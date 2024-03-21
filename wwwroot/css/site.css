@@ -1,0 +1,35 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.navlist {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  width: 80px;
+  min-height: 100vh;
+  background-color: black;
+  color: white;
+  text-align: center;
+  position: fixed;
+  padding-top: 20px;
+}
+
+.navlist a {
+  display: block;
+  margin-bottom: 50px;
+  margin-left: 10px;
+  color: white;
+  text-decoration: none;
+}
+
+.navlist a i {
+  color: white;
+  font-size: 25px;
+}
+
+.navlist a:visited {
+  color: white;
+}

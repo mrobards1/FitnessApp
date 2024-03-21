@@ -1,0 +1,40 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - FitnessApp</title>
+    @* <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" /> *@
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    @* <link rel="stylesheet" href="~/FitnessApp.styles.css" asp-append-version="true" /> *@
+    <script src="https://kit.fontawesome.com/34696fbef1.js" crossorigin="anonymous"></script>
+</head>
+
+ <nav>
+        <ul class="navlist">
+            <li><a asp-page="/calendar"><i class="fa-solid fa-calendar"></i></a></li>
+            <li><a asp-page="/workout"><i class="fa-solid fa-dumbbell"></i></a></li>
+            <li><a asp-page="/trends"><i class="fa-solid fa-arrow-trend-up"></i></a></li>
+            
+        </ul>
+
+
+    </nav>
+
+<body>
+        
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+
+</html>
