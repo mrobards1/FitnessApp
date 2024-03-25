@@ -1,16 +1,59 @@
 @page
+@model IndexModel
 @{
     ViewData["Title"] = "Workout Page";
 }
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <link rel="stylesheet" href="~/css/trends.css">
+    <style>
+        .center-table {
+            margin: 0 auto;
+            width: 50%; /* Adjust the width as needed */
+        }
+    </style>
 </head>
 
-<div class="container">
-    <h1 class="pageTitle">Workout</h1>
-</div>
+<body>
+    <div class="workoutContainer">
+        <form method="post">
+            <label for="workoutID">ID:</label>
+            <input type="number" id="workoutID" name="workoutID">
+            <br>
+            <label for="workoutName">Name:</label>
+            <input type="text" id="workoutName" name="workoutName">
+            <br>
+            <label for="workoutDate">Date:</label>
+            <input type="date" id="workoutDate" name="workoutDate">
+            <br>
+            <button type="submit">Submit</button>
+        </form>
+
+        <div class="center-table">
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var row in Model.TableRows)
+                    {
+                        <tr>
+                            <td>@row.WorkoutId</td>
+                            <td>@row.WorkoutName</td>
+                            <td>@row.WorkoutDate.ToShortDateString()</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
 
 </html>
