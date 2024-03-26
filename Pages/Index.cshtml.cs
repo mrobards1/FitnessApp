@@ -26,12 +26,11 @@ namespace FitnessApp.Pages
 
         public IActionResult OnPost()
         {
-            int workoutID = int.Parse(Request.Form["workoutID"]);
             string workoutName = Request.Form["workoutName"];
             DateTime workoutDate = DateTime.Parse(Request.Form["workoutDate"]);
 
             string connectionString = "Server=localhost;Database=FitnessApp;User Id=SA;Password=Gmr_41!41!0";
-            string SqlInsert = "INSERT INTO Workouts (WorkoutId, WorkoutName, WorkoutDate) VALUES (@WorkoutId, @WorkoutName, @WorkoutDate)";
+            string SqlInsert = "INSERT INTO Workouts (WorkoutName, WorkoutDate) VALUES (@WorkoutName, @WorkoutDate)";
 
             try
             {
@@ -41,7 +40,6 @@ namespace FitnessApp.Pages
 
                     using (SqlCommand command = new SqlCommand(SqlInsert, connection))
                     {
-                        command.Parameters.AddWithValue("@WorkoutId", workoutID);
                         command.Parameters.AddWithValue("@WorkoutName", workoutName);
                         command.Parameters.AddWithValue("@WorkoutDate", workoutDate);
 
