@@ -41,19 +41,31 @@
             </div>
             <div id="exercises-container">
                 <div class="exercise">
-                    <label for="exercises">Select Exercise:</label>
-                    <select class="exercise-select" name="exercises[]" multiple required>
-                        <option value="1">Push-ups</option>
-                        <option value="2">Squats</option>
-                        <option value="3">Pull-ups</option>
-                    </select>
+                    <label for="exercises">Exercise:</label>
+                    <input type="text" id="exercise" name="exercise" required>
                     <div>
                         <label for="sets">Sets:</label>
-                        <input type="number" class="sets" name="sets" min="1" value="3" required>
+                        <input type="number" class="sets" name="sets" min="1" value="3">
                     </div>
                     <div>
                         <label for="reps">Reps:</label>
-                        <input type="number" class="reps" name="reps" min="1" value="10" required>
+                        <input type="number" class="reps" name="reps" min="1" value="10">
+                    </div>
+                    <div>
+                        <label for="time">Time</label>
+                        <input type="number"  class="time" name="time">
+                    </div>
+                    <div>
+                        <label for="schedule">Exercise Schedule</label>
+                        <select for="schedule">Exercise Schedule</label>
+                        <option value="1">Sunday</option>
+                        <option value="2">Monday</option>
+                        <option value="3">Tuesday</option>
+                        <option value="4">Wednesday</option>
+                        <option value="5">Thursday</option>
+                        <option value="6">Friday</option>
+                        <option value="7">Saturday</option>
+
                     </div>
                 </div>
             </div>
