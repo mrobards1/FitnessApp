@@ -6,42 +6,54 @@
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Build Your Workout</title>
-    <style>
-        .container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-        }
-
-        form {
-            max-width: 500px;
-            padding: 20px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            background-color: #f9f9f9;
-        }
-
-        .exercise {
-            margin-bottom: 10px;
-        }
-    </style>
+    <link rel="stylesheet" href="~/css/workout.css">
 </head>
+
 <body>
     <div class="container">
         <form id="workout-form" action="/submit-workout" method="post">
-            <h1>Build Your Workout</h1>
-            <div>
-                <label for="title">Workout Title:</label>
-                <input type="text" id="title" name="title" required>
-            </div>
+            @* <h1>Build Your Workout</h1> *@
             <div id="exercises-container">
                 <div class="exercise">
-                    <label for="exercises">Exercise:</label>
+                    <label for="exercises">Exercise Name:</label>
+                    <input type="text" id="exercise" name="exercise" required>
+                   <button type="button" id="add-set">Add Set</button>
+                   <div id="set-container"></div>
+                    <div>
+                        <label for="rest">Rest Between Sets</label>
+                        <input type="number" class="rest" name="rest">
+                    </div>
+                    <div>
+                        <label for="schedule">Exercise Schedule</label>
+                        <select id="schedule" name="schedule">
+                            <option value="1">Sunday</option>
+                            <option value="2">Monday</option>
+                            <option value="3">Tuesday</option>
+                            <option value="4">Wednesday</option>
+                            <option value="5">Thursday</option>
+                            <option value="6">Friday</option>
+                            <option value="7">Saturday</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <button type="button" id="add-exercise">Add Exercise</button>
+            <button type="submit">Save Workout</button>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('add-exercise').addEventListener('click', function () {
+            const exercisesContainer = document.getElementById('exercises-container');
+            const newExercise = document.createElement('div');
+            newExercise.classList.add('exercise');
+            newExercise.innerHTML = `
+                <label for="exercises">Exercise:</label>
                     <input type="text" id="exercise" name="exercise" required>
                     <div>
                         <label for="sets">Sets:</label>
@@ -53,51 +65,57 @@
                     </div>
                     <div>
                         <label for="time">Time</label>
-                        <input type="number"  class="time" name="time">
+                        <input type="number" class="time" name="time">
+                    </div>
+                    <div>
+                        <label for="rest">Rest Between Sets</label>
+                        <input type="number" class="rest" name="rest">
                     </div>
                     <div>
                         <label for="schedule">Exercise Schedule</label>
-                        <select for="schedule">Exercise Schedule</label>
-                        <option value="1">Sunday</option>
-                        <option value="2">Monday</option>
-                        <option value="3">Tuesday</option>
-                        <option value="4">Wednesday</option>
-                        <option value="5">Thursday</option>
-                        <option value="6">Friday</option>
-                        <option value="7">Saturday</option>
-
+                        <select id="schedule" name="schedule">
+                            <option value="1">Sunday</option>
+                            <option value="2">Monday</option>
+                            <option value="3">Tuesday</option>
+                            <option value="4">Wednesday</option>
+                            <option value="5">Thursday</option>
+                            <option value="6">Friday</option>
+                            <option value="7">Saturday</option>
+                        </select>
                     </div>
-                </div>
-            </div>
-            <button type="button" id="add-exercise">Add Exercise</button>
-            <button type="submit">Save Workout</button>
-        </form>
-    </div>
-
-    <script>
-        document.getElementById('add-exercise').addEventListener('click', function() {
-            const exercisesContainer = document.getElementById('exercises-container');
-            const newExercise = document.createElement('div');
-            newExercise.classList.add('exercise');
-            newExercise.innerHTML = `
-                <label for="exercises">Select Exercise:</label>
-                <select class="exercise-select" name="exercises[]" multiple required>
-                    <option value="1">Push-ups</option>
-                    <option value="2">Squats</option>
-                    <option value="3">Pull-ups</option>
-                    <!-- Add more exercise options as needed -->
-                </select>
-                <div>
-                    <label for="sets">Sets:</label>
-                    <input type="number" class="sets" name="sets" min="1" value="3" required>
-                </div>
-                <div>
-                    <label for="reps">Reps:</label>
-                    <input type="number" class="reps" name="reps" min="1" value="10" required>
-                </div>
             `;
             exercisesContainer.appendChild(newExercise);
         });
+
+        let setNum = 1;
+
+        document.getElementById('add-set').addEventListener('click', function() {
+            const setContainer = document.getElementById('set-container');
+            const newSet = document.createElement('div');
+            newSet.classList.add('set');
+            newSet.innerHTML = `
+                 <div class="setGroup">
+                 <div class="set">
+                        <label for="set">Set ${setNum}:</label>
+                        @* <input type="number" class="sets" name="sets" min="1"> *@
+                    </div>
+                    <div>
+                        <input type="number" class="weight" name="weight" placeholder="lbs">
+                    </div>
+                    <div>
+                        @* <label for="reps">Reps:</label> *@
+                        <input type="number" class="reps" name="reps" min="1" placeholder="Reps:">
+                    </div>
+                    <div>
+                        @* <label for="time">Time</label> *@
+                        <input type="number" class="time" name="time" placeholder="Time">
+                    </div>
+                    </div>
+            `;
+            setContainer.appendChild(newSet);
+            setNum++;
+        })
     </script>
 </body>
+
 </html>
