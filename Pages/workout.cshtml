@@ -22,15 +22,15 @@
                 <div class="exercise">
                     <label for="exercises">Exercise Name:</label>
                     <input type="text" id="exercise" name="exercise" required>
-                   <button type="button" id="add-set">Add Set</button>
-                   <div id="set-container"></div>
+                    <button type="button" id="add-set">Add Set</button>
+                    <div id="set-container"></div>
                     <div>
                         <label for="rest">Rest Between Sets</label>
                         <input type="number" class="rest" name="rest">
                     </div>
                     <div>
                         <label for="schedule">Exercise Schedule</label>
-                        <select id="schedule" name="schedule">
+                        <select id="schedule" name="schedule" multiple style="display: none;">
                             <option value="1">Sunday</option>
                             <option value="2">Monday</option>
                             <option value="3">Tuesday</option>
@@ -39,6 +39,8 @@
                             <option value="6">Friday</option>
                             <option value="7">Saturday</option>
                         </select>
+
+                        <button id="showSchedule">Show Schedule Options</button>
                     </div>
                 </div>
             </div>
@@ -73,7 +75,7 @@
                     </div>
                     <div>
                         <label for="schedule">Exercise Schedule</label>
-                        <select id="schedule" name="schedule">
+                        <select id="schedule" name="schedule" multiple>
                             <option value="1">Sunday</option>
                             <option value="2">Monday</option>
                             <option value="3">Tuesday</option>
@@ -89,7 +91,7 @@
 
         let setNum = 1;
 
-        document.getElementById('add-set').addEventListener('click', function() {
+        document.getElementById('add-set').addEventListener('click', function () {
             const setContainer = document.getElementById('set-container');
             const newSet = document.createElement('div');
             newSet.classList.add('set');
@@ -115,6 +117,22 @@
             setContainer.appendChild(newSet);
             setNum++;
         })
+
+        document.getElementById('showSchedule').addEventListener('click', function() {
+            var scheduleSelect = document.getElementById('schedule');
+            if(scheduleSelect.style.display == "none") {
+                scheduleSelect.style.display = "block";
+            } else {
+                scheduleSelect.style.display ="none";
+            }
+        });
+
+        document.getElementById('schedule').addEventListener('click', function(event) {
+    var option = event.target;
+    if (option.tagName === 'OPTION') {
+        option.selected = !option.selected;
+    }
+});
     </script>
 </body>
 
