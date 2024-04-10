@@ -28,22 +28,64 @@
                         <label for="rest">Rest Between Sets</label>
                         <input type="number" class="rest" name="rest">
                     </div>
-                    <div>
-                        <label for="schedule">Exercise Schedule</label>
-                        <select id="schedule" name="schedule" multiple style="display: none;">
-                            <option value="1">Sunday</option>
-                            <option value="2">Monday</option>
-                            <option value="3">Tuesday</option>
-                            <option value="4">Wednesday</option>
-                            <option value="5">Thursday</option>
-                            <option value="6">Friday</option>
-                            <option value="7">Saturday</option>
-                        </select>
+                    <div id="exerciseSchedule" style="display:none">
+                        <div>
+                            <label>
+                                <i class="fa-regular fa-square"></i>
+                                <input type="checkbox" value="0" onchange="toggleCheckbox(this)" style="display:none">
+                                Sunday
+                            </label>
+                        </div>
+                        <div>
+                            <label>
+                                <i class="fa-regular fa-square"></i>
+                                <input type="checkbox" value="1" onchange="toggleCheckbox(this)" style="display:none">
+                                Monday
+                            </label>
+                        </div>
+                        <div>
+                            <label>
+                                <i class="fa-regular fa-square"></i>
+                                <input type="checkbox" value="2" onchange="toggleCheckbox(this)" style="display:none">
+                                Tuesday
+                            </label>
+                        </div>
+                        <div>
+                            <label>
+                                <i class="fa-regular fa-square"></i>
+                                <input type="checkbox" value="3" onchange="toggleCheckbox(this)" style="display:none">
+                                Wednesday
+                            </label>
+                        </div>
+                        <div>
+                            <label>
+                                <i class="fa-regular fa-square"></i>
+                                <input type="checkbox" value="4" onchange="toggleCheckbox(this)" style="display:none">
+                                Thursday
+                            </label>
+                        </div>
+                        <div>
+                            <label>
+                                <i class="fa-regular fa-square"></i>
+                                <input type="checkbox" value="5" onchange="toggleCheckbox(this)" style="display:none">
+                                Friday
+                            </label>
+                        </div>
+                        <div>
+                            <label>
+                                <i class="fa-regular fa-square"></i>
+                                <input type="checkbox" value="6" onchange="toggleCheckbox(this)" style="display:none">
+                                Saturday
+                            </label>
+                        </div>
 
-                        <button id="showSchedule">Show Schedule Options</button>
+
+                        <button id="closeSchedule">Hide Schedule Options</button>
                     </div>
+                    <button id="showSchedule">Show Schedule Options</button>
                 </div>
             </div>
+            <div id="selectedOptions"></div>
             <button type="button" id="add-exercise">Add Exercise</button>
             <button type="submit">Save Workout</button>
         </form>
@@ -118,21 +160,68 @@
             setNum++;
         })
 
-        document.getElementById('showSchedule').addEventListener('click', function() {
-            var scheduleSelect = document.getElementById('schedule');
-            if(scheduleSelect.style.display == "none") {
+        document.getElementById('showSchedule').addEventListener('click', function () {
+            var scheduleSelect = document.getElementById('exerciseSchedule');
+            if (scheduleSelect.style.display == "none") {
                 scheduleSelect.style.display = "block";
             } else {
-                scheduleSelect.style.display ="none";
+                scheduleSelect.style.display = "none";
             }
         });
 
-        document.getElementById('schedule').addEventListener('click', function(event) {
-    var option = event.target;
-    if (option.tagName === 'OPTION') {
-        option.selected = !option.selected;
+        document.getElementById('closeSchedule').addEventListener('click', function () {
+            var scheduleSelect = document.getElementById('exerciseSchedule');
+            scheduleSelect.style.display = "none";
+        })
+
+        document.getElementById('exerciseSchedule').addEventListener('click', function (event) {
+            var option = event.target;
+            if (option.tagName === 'OPTION') {
+                option.selected = !option.selected;
+            }
+        });
+
+        function toggleCheckbox(checkbox) {
+    console.log("toggleCheckbox function called");
+    var checkboxIcon = checkbox.previousElementSibling;
+    if (checkbox.checked) {
+        checkboxIcon.classList.remove('fa-regular', 'fa-square');
+        checkboxIcon.classList.add('fa-solid', 'fa-square');
+    } else {
+        checkboxIcon.classList.remove('fa-solid', 'fa-square');
+        checkboxIcon.classList.add('fa-regular', 'fa-square');
     }
-});
+
+    updateSelectedIcons();
+}
+
+function updateSelectedIcons() {
+    console.log("updateSelectedIcons function called");
+    var selectedOptionsDiv = document.getElementById('selectedOptions');
+    console.log("selectedOptionsDiv:", selectedOptionsDiv); // Log selectedOptionsDiv
+    var selectedCheckboxes = document.querySelectorAll('input[type="checkbox"]:checked');
+
+    console.log("Number of selected checkboxes:", selectedCheckboxes.length); // Log number of selected checkboxes
+
+    var selectedOptionNames = [];
+
+    for (var i = 0; i < selectedCheckboxes.length; i++) {
+        console.log("Checkbox:", selectedCheckboxes[i]);
+        console.log("Next sibling:", selectedCheckboxes[i].nextElementSibling);
+        var label = selectedCheckboxes[i].nextElementSibling.nextElementSibling; // Get the label element
+        console.log("Label:", label);
+        console.log("Text content:", label.textContent.trim());
+        selectedOptionNames.push(label.textContent.trim());
+    }
+
+    console.log("Selected option names:", selectedOptionNames); // Log selected option names
+
+    selectedOptionsDiv.textContent = selectedOptionNames.join(', ');
+}
+
+
+    
+
     </script>
 </body>
 

@@ -39,3 +39,17 @@ form {
     background-color: grey;
 
 }
+
+.container #exerciseSchedule {
+    width: 500px;
+    height: 500px;
+    background-color: beige;
+    position: absolute;
+    align-items: center;
+    justify-content: center;
+    opacity: 90%;
+}
+
+#schedule {
+    width: 80%;
+}
