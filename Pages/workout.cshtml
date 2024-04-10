@@ -92,7 +92,7 @@
     </div>
 
     <script>
-        document.getElementById('add-exercise').addEventListener('click', function () {
+        @* document.getElementById('add-exercise').addEventListener('click', function () {
             const exercisesContainer = document.getElementById('exercises-container');
             const newExercise = document.createElement('div');
             newExercise.classList.add('exercise');
@@ -129,7 +129,7 @@
                     </div>
             `;
             exercisesContainer.appendChild(newExercise);
-        });
+        }); *@
 
         let setNum = 1;
 
@@ -192,34 +192,25 @@
         checkboxIcon.classList.add('fa-regular', 'fa-square');
     }
 
-    updateSelectedIcons();
+    updateSelectedOptions();
+
 }
 
-function updateSelectedIcons() {
-    console.log("updateSelectedIcons function called");
-    var selectedOptionsDiv = document.getElementById('selectedOptions');
-    console.log("selectedOptionsDiv:", selectedOptionsDiv); // Log selectedOptionsDiv
-    var selectedCheckboxes = document.querySelectorAll('input[type="checkbox"]:checked');
+     function updateSelectedOptions() {
+        var selectedOptionsDiv = document.getElementById('selectedOptions');
+        selectedOptionsDiv.innerHTML = '';
 
-    console.log("Number of selected checkboxes:", selectedCheckboxes.length); // Log number of selected checkboxes
+        var checkboxes = document.querySelectorAll('#exerciseSchedule input[type="checkbox"]');
+        checkboxes.forEach(function(checkbox) {
+            if (checkbox.checked) {
+                var labelText = checkbox.parentNode.textContent.trim();
+                var optionText = document.createTextNode(labelText);
+                selectedOptionsDiv.appendChild(optionText);
 
-    var selectedOptionNames = [];
-
-    for (var i = 0; i < selectedCheckboxes.length; i++) {
-        console.log("Checkbox:", selectedCheckboxes[i]);
-        console.log("Next sibling:", selectedCheckboxes[i].nextElementSibling);
-        var label = selectedCheckboxes[i].nextElementSibling.nextElementSibling; // Get the label element
-        console.log("Label:", label);
-        console.log("Text content:", label.textContent.trim());
-        selectedOptionNames.push(label.textContent.trim());
+                selectedOptionsDiv.appendChild(document.createTextNode('    '));
+            }
+        });
     }
-
-    console.log("Selected option names:", selectedOptionNames); // Log selected option names
-
-    selectedOptionsDiv.textContent = selectedOptionNames.join(', ');
-}
-
-
     
 
     </script>
