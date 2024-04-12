@@ -7,14 +7,32 @@
 .container {
     display: flex;
     justify-content: center;
+    justify-content: center;
+    align-items: center;
+    background-color: black;
     height: 100vh;
 }
 
 form {
-    width: 700px;
+    width: 400px;
+    min-height: 100px;
     padding: 20px;
     border: 1px solid #ccc;
     background-color: #f9f9f9;
+}
+
+.workoutName {
+    margin-top: -10px;
+    margin-bottom: 25px;
+}
+
+.workoutName input {
+    outline: none;
+    border: none;
+    background: none;
+    border-bottom: 1px solid black;
+    width: 90%;
+    font-size: 25px;
 }
 
 .exercise {
@@ -41,15 +59,41 @@ form {
 }
 
 .container #exerciseSchedule {
-    width: 500px;
-    height: 500px;
-    background-color: beige;
-    position: absolute;
-    align-items: center;
-    justify-content: center;
-    opacity: 90%;
+    position: absolute; /* Set position to absolute */
+  width: 500px;
+  height: 500px;
+  background-color: beige;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.9; /* Changed to 0.9 for opacity */
+  top: 50%; /* Center vertically */
+  left: 50%; /* Center horizontally */
+  transform: translate(-50%, -50%); /* Center the element precisely */
 }
 
 #schedule {
     width: 80%;
+}
+
+.scheduleTitle {
+    font-size: 25px;
+}
+
+.lineBreak {
+    background-color: black;
+    width: 95%;
+    height: .3px !important;
+    margin: auto;
+    margin-bottom: 10px;
+}
+
+.weekday {
+    margin-bottom: 20px;
+    font-size: 20px;
+}
+
+.weekday label i {
+    font-size: 25px;
+    margin-right: 20px;
 }

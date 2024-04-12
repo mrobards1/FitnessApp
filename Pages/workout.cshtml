@@ -20,8 +20,14 @@
             @* <h1>Build Your Workout</h1> *@
             <div id="exercises-container">
                 <div class="exercise">
-                    <label for="exercises">Exercise Name:</label>
-                    <input type="text" id="exercise" name="exercise" required>
+                    <div class="workoutName">
+                        <input type="text" id="workoutName" name="workoutName" placeholder="Name Your Workout" required>
+                    </div>
+                    <div>
+                        <label for="exercises">Exercise Name:</label>
+                        <input type="text" id="exercise" name="exercise" required>
+                    </div>
+
                     <button type="button" id="add-set">Add Set</button>
                     <div id="set-container"></div>
                     <div>
@@ -29,49 +35,56 @@
                         <input type="number" class="rest" name="rest">
                     </div>
                     <div id="exerciseSchedule" style="display:none">
-                        <div>
+                        <p class="scheduleTitle">Schedule For</p>
+                        <div class="weekday">
                             <label>
                                 <i class="fa-regular fa-square"></i>
                                 <input type="checkbox" value="0" onchange="toggleCheckbox(this)" style="display:none">
                                 Sunday
                             </label>
                         </div>
-                        <div>
+                        <div class="lineBreak"></div>
+                        <div class="weekday">
                             <label>
                                 <i class="fa-regular fa-square"></i>
                                 <input type="checkbox" value="1" onchange="toggleCheckbox(this)" style="display:none">
                                 Monday
                             </label>
                         </div>
-                        <div>
+                        <div class="lineBreak"></div>
+                        <div class="weekday">
                             <label>
                                 <i class="fa-regular fa-square"></i>
                                 <input type="checkbox" value="2" onchange="toggleCheckbox(this)" style="display:none">
                                 Tuesday
                             </label>
                         </div>
-                        <div>
+                        <div class="lineBreak"></div>
+                        <div class="weekday">
                             <label>
                                 <i class="fa-regular fa-square"></i>
                                 <input type="checkbox" value="3" onchange="toggleCheckbox(this)" style="display:none">
                                 Wednesday
                             </label>
                         </div>
-                        <div>
+                        <div class="lineBreak"></div>
+                        <div class="weekday">
                             <label>
                                 <i class="fa-regular fa-square"></i>
                                 <input type="checkbox" value="4" onchange="toggleCheckbox(this)" style="display:none">
                                 Thursday
                             </label>
                         </div>
-                        <div>
+                        <div class="lineBreak"></div>
+                        <div class="weekday">
                             <label>
                                 <i class="fa-regular fa-square"></i>
                                 <input type="checkbox" value="5" onchange="toggleCheckbox(this)" style="display:none">
                                 Friday
                             </label>
                         </div>
-                        <div>
+                        <div class="lineBreak"></div>
+                        <div class="weekday">
                             <label>
                                 <i class="fa-regular fa-square"></i>
                                 <input type="checkbox" value="6" onchange="toggleCheckbox(this)" style="display:none">
@@ -92,44 +105,84 @@
     </div>
 
     <script>
-        @* document.getElementById('add-exercise').addEventListener('click', function () {
+        document.getElementById('add-exercise').addEventListener('click', function () {
             const exercisesContainer = document.getElementById('exercises-container');
             const newExercise = document.createElement('div');
             newExercise.classList.add('exercise');
             newExercise.innerHTML = `
-                <label for="exercises">Exercise:</label>
+                <label for="exercises">Exercise Name:</label>
                     <input type="text" id="exercise" name="exercise" required>
-                    <div>
-                        <label for="sets">Sets:</label>
-                        <input type="number" class="sets" name="sets" min="1" value="3">
-                    </div>
-                    <div>
-                        <label for="reps">Reps:</label>
-                        <input type="number" class="reps" name="reps" min="1" value="10">
-                    </div>
-                    <div>
-                        <label for="time">Time</label>
-                        <input type="number" class="time" name="time">
-                    </div>
+                    <button type="button" id="add-set">Add Set</button>
+                    <div id="set-container"></div>
                     <div>
                         <label for="rest">Rest Between Sets</label>
                         <input type="number" class="rest" name="rest">
                     </div>
-                    <div>
-                        <label for="schedule">Exercise Schedule</label>
-                        <select id="schedule" name="schedule" multiple>
-                            <option value="1">Sunday</option>
-                            <option value="2">Monday</option>
-                            <option value="3">Tuesday</option>
-                            <option value="4">Wednesday</option>
-                            <option value="5">Thursday</option>
-                            <option value="6">Friday</option>
-                            <option value="7">Saturday</option>
-                        </select>
+                    <div id="exerciseSchedule" style="display:none">
+                        <p class="scheduleTitle">Schedule For</p>
+                        <div class="weekday">
+                            <label>
+                                <i class="fa-regular fa-square"></i>
+                                <input type="checkbox" value="0" onchange="toggleCheckbox(this)" style="display:none">
+                                Sunday
+                            </label>
+                        </div>
+                        <div class="lineBreak"></div>
+                        <div class="weekday">
+                            <label>
+                                <i class="fa-regular fa-square"></i>
+                                <input type="checkbox" value="1" onchange="toggleCheckbox(this)" style="display:none">
+                                Monday
+                            </label>
+                        </div>
+                        <div class="lineBreak"></div>
+                        <div class="weekday">
+                            <label>
+                                <i class="fa-regular fa-square"></i>
+                                <input type="checkbox" value="2" onchange="toggleCheckbox(this)" style="display:none">
+                                Tuesday
+                            </label>
+                        </div>
+                        <div class="lineBreak"></div>
+                        <div class="weekday">
+                            <label>
+                                <i class="fa-regular fa-square"></i>
+                                <input type="checkbox" value="3" onchange="toggleCheckbox(this)" style="display:none">
+                                Wednesday
+                            </label>
+                        </div>
+                        <div class="lineBreak"></div>
+                        <div class="weekday">
+                            <label>
+                                <i class="fa-regular fa-square"></i>
+                                <input type="checkbox" value="4" onchange="toggleCheckbox(this)" style="display:none">
+                                Thursday
+                            </label>
+                        </div>
+                        <div class="lineBreak"></div>
+                        <div class="weekday">
+                            <label>
+                                <i class="fa-regular fa-square"></i>
+                                <input type="checkbox" value="5" onchange="toggleCheckbox(this)" style="display:none">
+                                Friday
+                            </label>
+                        </div>
+                        <div class="lineBreak"></div>
+                        <div class="weekday">
+                            <label>
+                                <i class="fa-regular fa-square"></i>
+                                <input type="checkbox" value="6" onchange="toggleCheckbox(this)" style="display:none">
+                                Saturday
+                            </label>
+                        </div>
+
+
+                        <button id="closeSchedule">Hide Schedule Options</button>
                     </div>
+                    <button id="showSchedule">Show Schedule Options</button>
             `;
             exercisesContainer.appendChild(newExercise);
-        }); *@
+        });
 
         let setNum = 1;
 
@@ -182,36 +235,36 @@
         });
 
         function toggleCheckbox(checkbox) {
-    console.log("toggleCheckbox function called");
-    var checkboxIcon = checkbox.previousElementSibling;
-    if (checkbox.checked) {
-        checkboxIcon.classList.remove('fa-regular', 'fa-square');
-        checkboxIcon.classList.add('fa-solid', 'fa-square');
-    } else {
-        checkboxIcon.classList.remove('fa-solid', 'fa-square');
-        checkboxIcon.classList.add('fa-regular', 'fa-square');
-    }
-
-    updateSelectedOptions();
-
-}
-
-     function updateSelectedOptions() {
-        var selectedOptionsDiv = document.getElementById('selectedOptions');
-        selectedOptionsDiv.innerHTML = '';
-
-        var checkboxes = document.querySelectorAll('#exerciseSchedule input[type="checkbox"]');
-        checkboxes.forEach(function(checkbox) {
+            console.log("toggleCheckbox function called");
+            var checkboxIcon = checkbox.previousElementSibling;
             if (checkbox.checked) {
-                var labelText = checkbox.parentNode.textContent.trim();
-                var optionText = document.createTextNode(labelText);
-                selectedOptionsDiv.appendChild(optionText);
-
-                selectedOptionsDiv.appendChild(document.createTextNode('    '));
+                checkboxIcon.classList.remove('fa-regular', 'fa-square');
+                checkboxIcon.classList.add('fa-solid', 'fa-square');
+            } else {
+                checkboxIcon.classList.remove('fa-solid', 'fa-square');
+                checkboxIcon.classList.add('fa-regular', 'fa-square');
             }
-        });
-    }
-    
+
+            updateSelectedOptions();
+
+        }
+
+        function updateSelectedOptions() {
+            var selectedOptionsDiv = document.getElementById('selectedOptions');
+            selectedOptionsDiv.innerHTML = '';
+
+            var checkboxes = document.querySelectorAll('#exerciseSchedule input[type="checkbox"]');
+            checkboxes.forEach(function (checkbox) {
+                if (checkbox.checked) {
+                    var labelText = checkbox.parentNode.textContent.trim();
+                    var optionText = document.createTextNode(labelText);
+                    selectedOptionsDiv.appendChild(optionText);
+
+                    selectedOptionsDiv.appendChild(document.createTextNode('    '));
+                }
+            });
+        }
+
 
     </script>
 </body>
