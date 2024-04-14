@@ -14,11 +14,12 @@
 }
 
 form {
-    width: 400px;
+    width: 500px;
     min-height: 100px;
     padding: 20px;
     border: 1px solid #ccc;
     background-color: #f9f9f9;
+    border-radius: 10px;
 }
 
 .workoutName {
@@ -26,13 +27,18 @@ form {
     margin-bottom: 25px;
 }
 
-.workoutName input {
+.workoutName input, .exerciseName input{
     outline: none;
     border: none;
     background: none;
     border-bottom: 1px solid black;
     width: 90%;
     font-size: 25px;
+}
+
+.exerciseName input {
+    font-size: 18px;
+    border-bottom: none;
 }
 
 .exercise {
@@ -54,7 +60,6 @@ form {
 .set {
     padding-right: 20px;
     width: 100%;
-    background-color: grey;
 
 }
 
@@ -96,4 +101,22 @@ form {
 .weekday label i {
     font-size: 25px;
     margin-right: 20px;
+}
+
+.add_button, .submit {
+    display: flex;
+    justify-content: center;
+}
+
+.rest {
+    margin-bottom: 25px;
+    margin-bottom: 10px;
+}
+
+.break {
+    width: 150%;
+    height: 4px;
+    background-color: black;
+    display: flex;
+    margin-left: -50px;
 }
