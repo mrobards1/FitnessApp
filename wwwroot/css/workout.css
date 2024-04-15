@@ -10,7 +10,7 @@
     justify-content: center;
     align-items: center;
     background-color: black;
-    height: 100vh;
+    min-height: 100vh;
 }
 
 form {
@@ -48,13 +48,17 @@ form {
 
 .setGroup {
     display: flex;
+    background-color: green;
+    margin-bottom: 4px;
    
 }
 
 .setGroup input {
     width: 50px;
+    margin-right: 4px;
     border: none;
     outline: none;
+    border-bottom: 1px solid black;
 }
 
 .set {
@@ -64,25 +68,27 @@ form {
 }
 
 .container #exerciseSchedule {
-    position: absolute; /* Set position to absolute */
+    position: absolute;
   width: 500px;
   height: 500px;
   background-color: beige;
   display: flex;
   align-items: center;
   justify-content: center;
-  opacity: 0.9; /* Changed to 0.9 for opacity */
-  top: 50%; /* Center vertically */
-  left: 50%; /* Center horizontally */
-  transform: translate(-50%, -50%); /* Center the element precisely */
+  opacity: 0.9;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
-#schedule {
-    width: 80%;
-}
 
 .scheduleTitle {
     font-size: 25px;
+}
+
+.schedule label,
+.schedule #selectedOptions {
+    display: inline-block;
 }
 
 .lineBreak {
@@ -107,10 +113,20 @@ form {
     display: flex;
     justify-content: center;
 }
-
 .rest {
-    margin-bottom: 25px;
+    display: flex;
+    align-items: center;
+    width: 100%;
     margin-bottom: 10px;
+}
+
+.rest input {
+    margin-left: auto;
+    width: 50px;
+    margin-right: 20px; 
+    outline: none;
+    border: none;
+    border-bottom: 1px solid black;
 }
 
 .break {
@@ -120,3 +136,4 @@ form {
     display: flex;
     margin-left: -50px;
 }
+
