@@ -1,41 +1,73 @@
 document.getElementById('workout-form').addEventListener('submit', function (event) {
-    event.preventDefault(); // Prevent the form from submitting normally
+    event.preventDefault();
 
     var workout = {};
 
     workout.name = document.getElementById('workoutName').value;
     console.log("Workout Name:", workout.name)
 
-
     var exerciseContainers = document.querySelectorAll('.exercise');
     workout.exercises = [];
 
-    
-    exerciseContainers.forEach(function(exerciseContainer) {
+    exerciseContainers.forEach(function (exerciseContainer) {
         var exercise = {};
         var exerciseNameInput = exerciseContainer.querySelector('.exerciseName input');
-        if (exerciseNameInput) {
+        if (exerciseNameInput && exerciseNameInput.value.trim() !== '') {
             exercise.name = exerciseNameInput.value;
-            console.log("Exercise Name: ", exercise.name);
+            var sets = [];
+            var setcontainers = exerciseContainer.querySelectorAll('.set');
+
+            setcontainers.forEach(function (setcontainer, index) {
+                var set = {};
+                var weightInput = setcontainer.querySelector('.weight');
+                if (weightInput && weightInput.value.trim() !== '') {
+                    set.weight = weightInput.value;
+                }
+                var repsInput = setcontainer.querySelector('.reps');
+                if (repsInput && repsInput.value.trim() !== '') {
+                    set.reps = repsInput.value;
+                }
+                var timeInput = setcontainer.querySelector('.time');
+                if (timeInput && timeInput.value.trim() !== '') {
+                    set.time = timeInput.value;
+                }
+
+                if (Object.keys(set).length > 0) {
+                    sets.push(set);
+                }
+
+            });
+            exercise.sets = sets;
+
+
+            var restInput = exerciseContainer.querySelector('.rest input');
+            if (restInput && restInput.value.trim() !== '') {
+                exercise.rest = restInput.value;
+                console.log("Rest Input Value:", restInput.value);
+            }
+
+            var weekDays = [];
+            var selectedDates = document.querySelectorAll('.exerciseSchedule input[type="checkbox"]');
+            console.log("Number of checkboxes found:", selectedDates.length); 
+
+            selectedDates.forEach(function (checkbox) {
+                if (checkbox.checked) {
+                    console.log("Checkbox value:", checkbox.value);
+                    weekDays.push(checkbox.value);
+                }
+            });
+
+            exercise.weekDays = weekDays;
+
+            if (sets.length > 0) {
+                workout.exercises.push(exercise);
+            }
         }
-
-        var sets = [];
-        var setcontainers = exerciseContainer.querySelectorAll('.set');
-
-        setcontainers.forEach(function(setcontainer, index) {
-            var set = {};
-            set.weight = setcontainer.querySelector('.weight').value;
-            set.reps = setcontainer.querySelector('.reps').value;
-            set.time = setcontainer.querySelector('.time').value;
-
-            sets.push(set);
-        }); 
-        console.log("Sets for Exercise", exercise.name + ":", sets);
     });
-
-    workout.exercises.push(exercise);
-    console.log("Exercises:", workout.exercises);
+    console.log("Complete Workout Object:", workout);
 });
+
+
 
 document.getElementById('add-exercise').addEventListener('click', function () {
     const exercisesContainer = document.getElementById('exercises-container');
@@ -51,68 +83,6 @@ document.getElementById('add-exercise').addEventListener('click', function () {
             <div class="rest">
                 <label for="rest">Rest Between Sets</label>
                 <input type="number" class="rest" name="rest">
-            </div>
-            <div class="exerciseSchedule" style="display:none">
-                <p class="scheduleTitle">Schedule For</p>
-                <div class="weekday">
-                    <label>
-                        <i class="fa-regular fa-square"></i>
-                        <input type="checkbox" value="0" onchange="toggleCheckbox(this)" style="display:none">
-                        Sunday
-                    </label>
-                </div>
-                <div class="lineBreak"></div>
-                <div class="weekday">
-                    <label>
-                        <i class="fa-regular fa-square"></i>
-                        <input type="checkbox" value="1" onchange="toggleCheckbox(this)" style="display:none">
-                        Monday
-                    </label>
-                </div>
-                <div class="lineBreak"></div>
-                <div class="weekday">
-                    <label>
-                        <i class="fa-regular fa-square"></i>
-                        <input type="checkbox" value="2" onchange="toggleCheckbox(this)" style="display:none">
-                        Tuesday
-                    </label>
-                </div>
-                <div class="lineBreak"></div>
-                <div class="weekday">
-                    <label>
-                        <i class="fa-regular fa-square"></i>
-                        <input type="checkbox" value="3" onchange="toggleCheckbox(this)" style="display:none">
-                        Wednesday
-                    </label>
-                </div>
-                <div class="lineBreak"></div>
-                <div class="weekday">
-                    <label>
-                        <i class="fa-regular fa-square"></i>
-                        <input type="checkbox" value="4" onchange="toggleCheckbox(this)" style="display:none">
-                        Thursday
-                    </label>
-                </div>
-                <div class="lineBreak"></div>
-                <div class="weekday">
-                    <label>
-                        <i class="fa-regular fa-square"></i>
-                        <input type="checkbox" value="5" onchange="toggleCheckbox(this)" style="display:none">
-                        Friday
-                    </label>
-                </div>
-                <div class="lineBreak"></div>
-                <div class="weekday">
-                    <label>
-                        <i class="fa-regular fa-square"></i>
-                        <input type="checkbox" value="6" onchange="toggleCheckbox(this)" style="display:none">
-                        Saturday
-                    </label>
-                </div>
-
-
-                <button id="closeSchedule">Hide Schedule Options</button>
-
             </div>
             <div class="break"></div>
     `;
@@ -146,9 +116,8 @@ document.getElementById('add-exercise').addEventListener('click', function () {
 });
 
 
-
 document.getElementById('showSchedule').addEventListener('click', function () {
-    var scheduleSelect = document.getElementById('exerciseSchedule');
+    var scheduleSelect = document.querySelector('.exerciseSchedule');
     if (scheduleSelect.style.display == "none") {
         scheduleSelect.style.display = "block";
     } else {
@@ -156,12 +125,20 @@ document.getElementById('showSchedule').addEventListener('click', function () {
     }
 });
 
+
+
+
+
+
+console.log("Element with class 'exerciseSchedule':", document.querySelector('.exerciseSchedule'));
+
+
 document.getElementById('closeSchedule').addEventListener('click', function () {
-    var scheduleSelect = document.getElementById('exerciseSchedule');
+    var scheduleSelect = document.querySelector('.exerciseSchedule');
     scheduleSelect.style.display = "none";
 })
 
-document.getElementById('exerciseSchedule').addEventListener('click', function (event) {
+document.querySelector('.exerciseSchedule').addEventListener('click', function (event) {
     var option = event.target;
     if (option.tagName === 'OPTION') {
         option.selected = !option.selected;

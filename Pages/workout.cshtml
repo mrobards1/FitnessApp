@@ -23,81 +23,6 @@
                     <div class="workoutName">
                         <input type="text" id="workoutName" name="workoutName" placeholder="Name Your Workout" required>
                     </div>
-
-                    @* Start of Exercise Container*@
-                    @* <div class="exerciseName">
-                        <input type="text" class="exercise" name="exercise" placeholder="Exercise Name" required>
-                    </div>
-
-                    <button type="button" class="add-set">Add Set</button>
-                    <div class="set-container"></div>
-                    <div class="rest">
-                        <label for="rest">Rest Between Sets</label>
-                        <input type="number" class="rest" name="rest">
-                    </div>
-                    <div id="exerciseSchedule" style="display:none">
-                        <p class="scheduleTitle">Schedule For</p>
-                        <div class="weekday">
-                            <label>
-                                <i class="fa-regular fa-square"></i>
-                                <input type="checkbox" value="0" onchange="toggleCheckbox(this)" style="display:none">
-                                Sunday
-                            </label>
-                        </div>
-                        <div class="lineBreak"></div>
-                        <div class="weekday">
-                            <label>
-                                <i class="fa-regular fa-square"></i>
-                                <input type="checkbox" value="1" onchange="toggleCheckbox(this)" style="display:none">
-                                Monday
-                            </label>
-                        </div>
-                        <div class="lineBreak"></div>
-                        <div class="weekday">
-                            <label>
-                                <i class="fa-regular fa-square"></i>
-                                <input type="checkbox" value="2" onchange="toggleCheckbox(this)" style="display:none">
-                                Tuesday
-                            </label>
-                        </div>
-                        <div class="lineBreak"></div>
-                        <div class="weekday">
-                            <label>
-                                <i class="fa-regular fa-square"></i>
-                                <input type="checkbox" value="3" onchange="toggleCheckbox(this)" style="display:none">
-                                Wednesday
-                            </label>
-                        </div>
-                        <div class="lineBreak"></div>
-                        <div class="weekday">
-                            <label>
-                                <i class="fa-regular fa-square"></i>
-                                <input type="checkbox" value="4" onchange="toggleCheckbox(this)" style="display:none">
-                                Thursday
-                            </label>
-                        </div>
-                        <div class="lineBreak"></div>
-                        <div class="weekday">
-                            <label>
-                                <i class="fa-regular fa-square"></i>
-                                <input type="checkbox" value="5" onchange="toggleCheckbox(this)" style="display:none">
-                                Friday
-                            </label>
-                        </div>
-                        <div class="lineBreak"></div>
-                        <div class="weekday">
-                            <label>
-                                <i class="fa-regular fa-square"></i>
-                                <input type="checkbox" value="6" onchange="toggleCheckbox(this)" style="display:none">
-                                Saturday
-                            </label>
-                        </div>
-
-
-                        <button id="closeSchedule">Hide Schedule Options</button>
-                    </div> *@
-
-                    @* End of Exercise Container*@
                 </div>
             </div>
 
@@ -110,10 +35,73 @@
             </div>
 
             <div class="scheduleButton">
-                <button id="showSchedule">Show Schedule Options</button>
+                <button type="button" id="showSchedule">Show Schedule Options</button>
             </div>
             <div class="submit">
                 <button type="submit">Save Workout</button>
+            </div>
+
+            <div class="exerciseSchedule" style="display:none">
+                <p class="scheduleTitle">Schedule For</p>
+                <div class="weekday">
+                    <label>
+                        <i class="fa-regular fa-square"></i>
+                        <input type="checkbox" value="0" onchange="toggleCheckbox(this)" style="display:none">
+                        Sunday
+                    </label>
+                </div>
+                <div class="lineBreak"></div>
+                <div class="weekday">
+                    <label>
+                        <i class="fa-regular fa-square"></i>
+                        <input type="checkbox" value="1" onchange="toggleCheckbox(this)" style="display:none">
+                        Monday
+                    </label>
+                </div>
+                <div class="lineBreak"></div>
+                <div class="weekday">
+                    <label>
+                        <i class="fa-regular fa-square"></i>
+                        <input type="checkbox" value="2" onchange="toggleCheckbox(this)" style="display:none">
+                        Tuesday
+                    </label>
+                </div>
+                <div class="lineBreak"></div>
+                <div class="weekday">
+                    <label>
+                        <i class="fa-regular fa-square"></i>
+                        <input type="checkbox" value="3" onchange="toggleCheckbox(this)" style="display:none">
+                        Wednesday
+                    </label>
+                </div>
+                <div class="lineBreak"></div>
+                <div class="weekday">
+                    <label>
+                        <i class="fa-regular fa-square"></i>
+                        <input type="checkbox" value="4" onchange="toggleCheckbox(this)" style="display:none">
+                        Thursday
+                    </label>
+                </div>
+                <div class="lineBreak"></div>
+                <div class="weekday">
+                    <label>
+                        <i class="fa-regular fa-square"></i>
+                        <input type="checkbox" value="5" onchange="toggleCheckbox(this)" style="display:none">
+                        Friday
+                    </label>
+                </div>
+                <div class="lineBreak"></div>
+                <div class="weekday">
+                    <label>
+                        <i class="fa-regular fa-square"></i>
+                        <input type="checkbox" value="6" onchange="toggleCheckbox(this)" style="display:none">
+                        Saturday
+                    </label>
+                </div>
+
+
+                <button type="button" id="closeSchedule">Hide Schedule Options</button>
+
             </div>
 
         </form>
@@ -123,3 +111,4 @@
 </body>
 
 </html>
+
