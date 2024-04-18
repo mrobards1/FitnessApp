@@ -1,10 +1,11 @@
+//workout.js
+
+var workout = {};
+
 document.getElementById('workout-form').addEventListener('submit', function (event) {
     event.preventDefault();
 
-    var workout = {};
-
     workout.name = document.getElementById('workoutName').value;
-    console.log("Workout Name:", workout.name)
 
     var exerciseContainers = document.querySelectorAll('.exercise');
     workout.exercises = [];
@@ -43,29 +44,34 @@ document.getElementById('workout-form').addEventListener('submit', function (eve
             var restInput = exerciseContainer.querySelector('.rest input');
             if (restInput && restInput.value.trim() !== '') {
                 exercise.rest = restInput.value;
-                console.log("Rest Input Value:", restInput.value);
             }
 
-            var weekDays = [];
-            var selectedDates = document.querySelectorAll('.exerciseSchedule input[type="checkbox"]');
-            console.log("Number of checkboxes found:", selectedDates.length); 
-
-            selectedDates.forEach(function (checkbox) {
-                if (checkbox.checked) {
-                    console.log("Checkbox value:", checkbox.value);
-                    weekDays.push(checkbox.value);
-                }
-            });
-
-            exercise.weekDays = weekDays;
 
             if (sets.length > 0) {
                 workout.exercises.push(exercise);
             }
         }
     });
-    console.log("Complete Workout Object:", workout);
+
+    var weekDays = [];
+    var selectedDates = document.querySelectorAll('.exerciseSchedule input[type="checkbox"]');
+
+    selectedDates.forEach(function (checkbox) {
+        if (checkbox.checked) {
+            weekDays.push(checkbox.value);
+        }
+    });
+
+    workout.weekDays = weekDays;
+
+    console.log("Workout object in workout.js:", workout);
+    localStorage.setItem('workoutData', JSON.stringify(workout));
+
 });
+
+
+
+
 
 
 
@@ -129,10 +135,6 @@ document.getElementById('showSchedule').addEventListener('click', function () {
 
 
 
-
-console.log("Element with class 'exerciseSchedule':", document.querySelector('.exerciseSchedule'));
-
-
 document.getElementById('closeSchedule').addEventListener('click', function () {
     var scheduleSelect = document.querySelector('.exerciseSchedule');
     scheduleSelect.style.display = "none";
@@ -146,7 +148,6 @@ document.querySelector('.exerciseSchedule').addEventListener('click', function (
 });
 
 function toggleCheckbox(checkbox) {
-    console.log("toggleCheckbox function called");
     var checkboxIcon = checkbox.previousElementSibling;
     if (checkbox.checked) {
         checkboxIcon.classList.remove('fa-regular', 'fa-square');
@@ -175,3 +176,4 @@ function updateSelectedOptions() {
         }
     });
 }
+
