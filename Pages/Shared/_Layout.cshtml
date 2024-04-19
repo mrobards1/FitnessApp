@@ -13,9 +13,30 @@
 
  <nav>
         <ul class="navlist">
-            <li><a asp-page="/week"><i class="fa-solid fa-calendar"></i></a></li>
-            <li><a asp-page="/workout"><i class="fa-solid fa-dumbbell"></i></a></li>
-            <li><a asp-page="/trends"><i class="fa-solid fa-arrow-trend-up"></i></a></li>
+            <li>
+        <a asp-page="/week">
+            <div class="iconContainer">
+                <i class="fa-solid fa-calendar"></i>
+                <p class="iconTitle">Week</p>
+            </div>
+        </a>
+    </li>
+    <li>
+        <a asp-page="/workout">
+            <div class="iconContainer">
+                <i class="fa-solid fa-dumbbell"></i>
+                <p class="iconTitle">Workout</p>
+            </div>
+        </a>
+    </li>
+    <li>
+        <a asp-page="/trends">
+            <div class="iconContainer">
+                <i class="fa-solid fa-arrow-trend-up"></i>
+                <p class="iconTitle">Trends</p>
+            </div>
+        </a>
+    </li>
             
         </ul>
 

@@ -8,7 +8,7 @@
   list-style-type: none;
   margin: 0;
   padding: 0;
-  width: 80px;
+  width: 100px;
   min-height: 100vh;
   background-color: black;
   color: white;
@@ -32,4 +32,8 @@
 
 .navlist a:visited {
   color: white;
+}
+
+.iconTitle {
+  font-weight: bold;
 }

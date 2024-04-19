@@ -27,6 +27,14 @@ window.addEventListener('DOMContentLoaded', function () {
                 const workoutName = document.createElement('h1');
                 workoutName.textContent = workout.name;
                 workoutDiv.appendChild(workoutName);
+
+                const expandButton = document.createElement('button');
+                expandButton.className = 'expandButton';
+                workoutDiv.appendChild(expandButton);
+
+                const moreInfo = document.createElement('div');
+                moreInfo.className = 'moreInfo';
+
                 workout.exercises.forEach(exercise => {
                     const exerciseName = document.createElement('p');
                     exerciseName.textContent = exercise.name;
