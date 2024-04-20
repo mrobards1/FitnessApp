@@ -4,13 +4,11 @@ window.addEventListener('DOMContentLoaded', function () {
     var workoutData = localStorage.getItem('workoutData');
     var workout = JSON.parse(workoutData);
 
-    // Now you can work with the workout object here
     console.log("Workout object in week.js:", workout);
 
     function populateWeek(workout) {
         const dayNames = ["sun", "mon", "tues", "wed", "thurs", "fri", "sat"];
 
-        // Display the workout name
         console.log("Workout name:", workout.name);
 
 
@@ -30,15 +28,17 @@ window.addEventListener('DOMContentLoaded', function () {
 
                 const expandButton = document.createElement('button');
                 expandButton.className = 'expandButton';
+                expandButton.textContent = '+'
                 workoutDiv.appendChild(expandButton);
 
                 const moreInfo = document.createElement('div');
                 moreInfo.className = 'moreInfo';
+                moreInfo.style.display = 'none';
 
                 workout.exercises.forEach(exercise => {
                     const exerciseName = document.createElement('p');
                     exerciseName.textContent = exercise.name;
-                    workoutDiv.appendChild(exerciseName);
+                    moreInfo.appendChild(exerciseName);
                     var setCount = 1;
                     exercise.sets.forEach(set => {
                         const setDetails = document.createElement('p');
@@ -63,25 +63,39 @@ window.addEventListener('DOMContentLoaded', function () {
                         setString = setString.replace(/,\s*$/, '');
 
                         setDetails.textContent = setString;
-                        workoutDiv.appendChild(setDetails);
+                        moreInfo.appendChild(setDetails);
                         setCount++;
                     });
 
                     if (exercise.rest !== undefined) {
                         const rest = document.createElement('p');
                         rest.textContent = "Rest Between Sets: " + exercise.rest;
-                        workoutDiv.appendChild(rest);
+                        moreInfo.appendChild(rest);
                     }
 
                 });
                 dayDiv.appendChild(workoutDiv);
+                dayDiv.appendChild(moreInfo);
             }
         });
 
     }
 
     populateWeek(workout);
+
+    
 });
+
+document.querySelectorAll('.expandButton').addEventListener('click', function() {
+    var scheduleSelect = document.querySelector('.moreInfo');
+    if (scheduleSelect.style.display == "none") {
+        scheduleSelect.style.display = "block";
+    } else {
+        scheduleSelect.style.display = "none";
+    }
+});
+
+
 
 
 

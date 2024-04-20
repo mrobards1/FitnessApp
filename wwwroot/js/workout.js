@@ -84,7 +84,8 @@ document.getElementById('add-exercise').addEventListener('click', function () {
                 <input type="text" class="exercise" name="exercise" placeholder="Exercise Name" required>
             </div>
 
-            <button type="button" class="add-set">Add Set</button>
+            <button type="button" class="addSet">Add Set</button>
+            <button type="button" class="deleteSet">Delete Set</button> 
             <div class="set-container"></div>
             <div class="rest">
                 <label for="rest">Rest Between Sets</label>
@@ -96,7 +97,7 @@ document.getElementById('add-exercise').addEventListener('click', function () {
 
     let setNum = 1;
 
-    newExercise.querySelector('.add-set').addEventListener('click', function () {
+    newExercise.querySelector('.addSet').addEventListener('click', function () {
         const setContainer = newExercise.querySelector('.set-container');
         const newSet = document.createElement('div');
         newSet.classList.add('set');
@@ -114,10 +115,28 @@ document.getElementById('add-exercise').addEventListener('click', function () {
         <div>
             <input type="number" class="time" name="time" placeholder="Time">
         </div>
+        <button type="button" class="deleteSet">Delete Set</button>
     </div>
 `;
         setContainer.appendChild(newSet);
         setNum++;
+
+        const deleteSetButton = newSet.querySelector('.deleteSet');
+        if (deleteSetButton) {
+            deleteSetButton.addEventListener('click', function () {
+                newSet.remove();
+                
+                setNum--;
+                // renumbers the sets when a previous set is deleted
+                const setGroups = setContainer.querySelectorAll('.setGroup');
+            setGroups.forEach((setGroup, index) => {
+                const label = setGroup.querySelector('label');
+                if (label) {
+                    label.textContent = `Set ${index + 1}:`;
+                }
+            });
+            });
+        }
     });
 });
 
