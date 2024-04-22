@@ -26,9 +26,13 @@ window.addEventListener('DOMContentLoaded', function () {
                 workoutName.textContent = workout.name;
                 workoutDiv.appendChild(workoutName);
 
+                const exerciseCount = document.createElement('p');
+                exerciseCount.textContent = `Exercises: ${workout.exercises.length}`;
+                workoutDiv.appendChild(exerciseCount);
+
                 const expandButton = document.createElement('button');
                 expandButton.className = 'expandButton';
-                expandButton.textContent = '+'
+                expandButton.textContent = 'Info'
                 workoutDiv.appendChild(expandButton);
 
                 const moreInfo = document.createElement('div');
@@ -49,12 +53,12 @@ window.addEventListener('DOMContentLoaded', function () {
                             setString += `Weight: ${set.weight}, `;
                         }
 
-                        
+
                         if (set.reps !== undefined) {
                             setString += `Reps: ${set.reps}, `;
                         }
 
-                        
+
                         if (set.time !== undefined) {
                             setString += `Time: ${set.time}, `;
                         }
@@ -76,6 +80,14 @@ window.addEventListener('DOMContentLoaded', function () {
                 });
                 dayDiv.appendChild(workoutDiv);
                 dayDiv.appendChild(moreInfo);
+
+                expandButton.addEventListener('click', function () {
+                    if (moreInfo.style.display === "none") {
+                        moreInfo.style.display = "block";
+                    } else {
+                        moreInfo.style.display = "none";
+                    }
+                });
             }
         });
 
@@ -83,17 +95,10 @@ window.addEventListener('DOMContentLoaded', function () {
 
     populateWeek(workout);
 
-    
+
 });
 
-document.querySelectorAll('.expandButton').addEventListener('click', function() {
-    var scheduleSelect = document.querySelector('.moreInfo');
-    if (scheduleSelect.style.display == "none") {
-        scheduleSelect.style.display = "block";
-    } else {
-        scheduleSelect.style.display = "none";
-    }
-});
+
 
 
 

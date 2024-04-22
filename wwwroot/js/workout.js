@@ -63,10 +63,14 @@ document.getElementById('workout-form').addEventListener('submit', function (eve
     });
 
     workout.weekDays = weekDays;
+    console.log("Before redirection");
 
     console.log("Workout object in workout.js:", workout);
     localStorage.setItem('workoutData', JSON.stringify(workout));
 
+    // console.log("Before redirection");
+    // window.location.href = "/Users/mitchrobards/FitnessApp/Pages/week.cshtml";
+    // console.log("After redirection");
 });
 
 
@@ -82,6 +86,7 @@ document.getElementById('add-exercise').addEventListener('click', function () {
     newExercise.innerHTML = `
         <div class="exerciseName">
                 <input type="text" class="exercise" name="exercise" placeholder="Exercise Name" required>
+                <button type="button" class="deleteExercise">Delete</button>
             </div>
 
             <button type="button" class="addSet">Add Set</button>
@@ -94,6 +99,14 @@ document.getElementById('add-exercise').addEventListener('click', function () {
             <div class="break"></div>
     `;
     exercisesContainer.appendChild(newExercise);
+
+    const deleteExerciseButton = newExercise.querySelector('.deleteExercise');
+    if (deleteExerciseButton) {
+        deleteExerciseButton.addEventListener('click', function () {
+            newExercise.remove();
+        });
+    }
+
 
     let setNum = 1;
 
@@ -121,20 +134,22 @@ document.getElementById('add-exercise').addEventListener('click', function () {
         setContainer.appendChild(newSet);
         setNum++;
 
+
+
         const deleteSetButton = newSet.querySelector('.deleteSet');
         if (deleteSetButton) {
             deleteSetButton.addEventListener('click', function () {
                 newSet.remove();
-                
+
                 setNum--;
                 // renumbers the sets when a previous set is deleted
                 const setGroups = setContainer.querySelectorAll('.setGroup');
-            setGroups.forEach((setGroup, index) => {
-                const label = setGroup.querySelector('label');
-                if (label) {
-                    label.textContent = `Set ${index + 1}:`;
-                }
-            });
+                setGroups.forEach((setGroup, index) => {
+                    const label = setGroup.querySelector('label');
+                    if (label) {
+                        label.textContent = `Set ${index + 1}:`;
+                    }
+                });
             });
         }
     });

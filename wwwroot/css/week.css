@@ -30,7 +30,7 @@
 
 .workoutDiv {
     width: 100%;
-    min-height: 150px;
+    height: 100px;
     margin-top: 20px;
     margin-right: 10px;
     background-color: antiquewhite;
@@ -52,3 +52,9 @@
     font-weight: bold;
 }
 
+
+.moreInfo {
+    background-color: antiquewhite;
+    width: 100%;
+    min-height: 50px;
+}
