@@ -1,3 +1,11 @@
+:root {
+  --offwhite: #f5f5f5;
+  --lightpurple: #9f5f91;
+  --purple: #572c57;
+  --reddish: #e26972;
+  --yellow: #f6ea98;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -10,7 +18,7 @@
   padding: 0;
   width: 100px;
   min-height: 100vh;
-  background-color: black;
+  background-color: var(--reddish);
   color: white;
   text-align: center;
   position: fixed;
@@ -20,7 +28,6 @@
 .navlist a {
   display: block;
   margin-bottom: 50px;
-  margin-left: 10px;
   color: white;
   text-decoration: none;
 }

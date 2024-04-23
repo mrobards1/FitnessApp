@@ -1,9 +1,11 @@
 //workout.js
 
-var workout = {};
+var workouts = [];
 
 document.getElementById('workout-form').addEventListener('submit', function (event) {
     event.preventDefault();
+
+    var workout = {};
 
     workout.name = document.getElementById('workoutName').value;
 
@@ -63,10 +65,13 @@ document.getElementById('workout-form').addEventListener('submit', function (eve
     });
 
     workout.weekDays = weekDays;
-    console.log("Before redirection");
 
-    console.log("Workout object in workout.js:", workout);
-    localStorage.setItem('workoutData', JSON.stringify(workout));
+    workouts.push(workout);
+
+    console.log("workouts: ", workouts);
+
+
+    localStorage.setItem('workoutsData', JSON.stringify(workouts));
 
     // console.log("Before redirection");
     // window.location.href = "/Users/mitchrobards/FitnessApp/Pages/week.cshtml";

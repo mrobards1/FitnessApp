@@ -1,16 +1,19 @@
 //week.js
 
 window.addEventListener('DOMContentLoaded', function () {
-    var workoutData = localStorage.getItem('workoutData');
-    var workout = JSON.parse(workoutData);
+    var workoutsData = localStorage.getItem('workoutsData');
+    var workouts = JSON.parse(workoutsData);
 
-    console.log("Workout object in week.js:", workout);
+    console.log("All Workouts in week.js:", workouts);
+
+    workouts.forEach(function(workout) {
+        populateWeek(workout);
+    });
 
     function populateWeek(workout) {
         const dayNames = ["sun", "mon", "tues", "wed", "thurs", "fri", "sat"];
 
         console.log("Workout name:", workout.name);
-
 
         // Loop through each day of the week
         workout.weekDays.forEach(day => {
@@ -21,19 +24,19 @@ window.addEventListener('DOMContentLoaded', function () {
                 const workoutDiv = document.createElement('div');
                 workoutDiv.className = 'workoutDiv';
 
-                // Create and append workout name to workoutDiv
                 const workoutName = document.createElement('h1');
                 workoutName.textContent = workout.name;
+                workoutName.className = 'workoutTitle';
                 workoutDiv.appendChild(workoutName);
+
+                const lineBreak = document.createElement('div');
+                lineBreak.className = 'linebreak';
+                workoutDiv.appendChild(lineBreak);
 
                 const exerciseCount = document.createElement('p');
                 exerciseCount.textContent = `Exercises: ${workout.exercises.length}`;
+                exerciseCount.className = 'exerciseCount';
                 workoutDiv.appendChild(exerciseCount);
-
-                const expandButton = document.createElement('button');
-                expandButton.className = 'expandButton';
-                expandButton.textContent = 'Info'
-                workoutDiv.appendChild(expandButton);
 
                 const moreInfo = document.createElement('div');
                 moreInfo.className = 'moreInfo';
@@ -53,11 +56,9 @@ window.addEventListener('DOMContentLoaded', function () {
                             setString += `Weight: ${set.weight}, `;
                         }
 
-
                         if (set.reps !== undefined) {
                             setString += `Reps: ${set.reps}, `;
                         }
-
 
                         if (set.time !== undefined) {
                             setString += `Time: ${set.time}, `;
@@ -76,32 +77,34 @@ window.addEventListener('DOMContentLoaded', function () {
                         rest.textContent = "Rest Between Sets: " + exercise.rest;
                         moreInfo.appendChild(rest);
                     }
-
                 });
+
+                
+
                 dayDiv.appendChild(workoutDiv);
-                dayDiv.appendChild(moreInfo);
+                workoutDiv.appendChild(moreInfo);
+
+                const expandButton = document.createElement('button');
+                expandButton.className = 'expandButton';
+                expandButton.textContent = 'View Workout';
+                workoutDiv.appendChild(expandButton);
 
                 expandButton.addEventListener('click', function () {
                     if (moreInfo.style.display === "none") {
                         moreInfo.style.display = "block";
+                        exerciseCount.style.display = "none";
+                        expandButton.textContent = "Minimize View";
+                        lineBreak.style.display = "block";
                     } else {
                         moreInfo.style.display = "none";
+                        exerciseCount.style.display = "block";
+                        expandButton.textContent = "View Workout";
+                        lineBreak.style.display = "none";
                     }
+
+                    
                 });
             }
         });
-
     }
-
-    populateWeek(workout);
-
-
 });
-
-
-
-
-
-
-
-
