@@ -6,7 +6,7 @@ window.addEventListener('DOMContentLoaded', function () {
 
     console.log("All Workouts in week.js:", workouts);
 
-    workouts.forEach(function(workout) {
+    workouts.forEach(function (workout) {
         populateWeek(workout);
     });
 
@@ -29,9 +29,6 @@ window.addEventListener('DOMContentLoaded', function () {
                 workoutName.className = 'workoutTitle';
                 workoutDiv.appendChild(workoutName);
 
-                const lineBreak = document.createElement('div');
-                lineBreak.className = 'linebreak';
-                workoutDiv.appendChild(lineBreak);
 
                 const exerciseCount = document.createElement('p');
                 exerciseCount.textContent = `Exercises: ${workout.exercises.length}`;
@@ -43,43 +40,71 @@ window.addEventListener('DOMContentLoaded', function () {
                 moreInfo.style.display = 'none';
 
                 workout.exercises.forEach(exercise => {
+
+                    const exerciseDiv = document.createElement('div');
+                    exerciseDiv.className = "exerciseDiv";
+
                     const exerciseName = document.createElement('p');
+                    exerciseName.className = "exerciseName"
                     exerciseName.textContent = exercise.name;
-                    moreInfo.appendChild(exerciseName);
+                    exerciseDiv.appendChild(exerciseName);
+
+
                     var setCount = 1;
                     exercise.sets.forEach(set => {
-                        const setDetails = document.createElement('p');
-                        let setString = `Set: ${setCount} `;
+                        const setContainer = document.createElement('div');
+                        setContainer.className = "setContainer";
+
+                        const setNum = document.createElement('div');
+                        setNum.className = "setName";
+
+                        const setString = document.createElement('p');
+                        setString.textContent = `Set: ${setCount} `;
+                        setNum.appendChild(setString);
+
+                        setContainer.appendChild(setNum);
+
+                        const setVals = document.createElement('div');
+                        setVals.className = "setVals";
+
+                        const setValString = document.createElement('p');
+
+                        let valString = "";
 
                         //checks if weight, reps, and time values are defined
                         if (set.weight !== undefined) {
-                            setString += `Weight: ${set.weight}, `;
+                            valString += `W: ${set.weight} `;
                         }
 
                         if (set.reps !== undefined) {
-                            setString += `Reps: ${set.reps}, `;
+                            valString += `R: ${set.reps} `;
                         }
 
                         if (set.time !== undefined) {
-                            setString += `Time: ${set.time}, `;
+                            valString += `T: ${set.time} `;
                         }
 
                         // Remove trailing comma and space
-                        setString = setString.replace(/,\s*$/, '');
+                        valString = valString.replace(/,\s*$/, '');
 
-                        setDetails.textContent = setString;
-                        moreInfo.appendChild(setDetails);
+                        setValString.textContent = valString;
+                        setVals.appendChild(setValString);
+                        setContainer.appendChild(setVals);
+                        exerciseDiv.appendChild(setContainer);
+
                         setCount++;
                     });
 
                     if (exercise.rest !== undefined) {
                         const rest = document.createElement('p');
                         rest.textContent = "Rest Between Sets: " + exercise.rest;
-                        moreInfo.appendChild(rest);
+                        exerciseDiv.appendChild(rest);
                     }
+
+                    moreInfo.appendChild(exerciseDiv);
                 });
 
-                
+
 
                 dayDiv.appendChild(workoutDiv);
                 workoutDiv.appendChild(moreInfo);
@@ -94,15 +119,22 @@ window.addEventListener('DOMContentLoaded', function () {
                         moreInfo.style.display = "block";
                         exerciseCount.style.display = "none";
                         expandButton.textContent = "Minimize View";
-                        lineBreak.style.display = "block";
+                        const moreInfoHeight = moreInfo.scrollHeight;
+                        const newHeight = moreInfoHeight + 100;
+
+                        // Set the minHeight of workoutDiv
+                        workoutDiv.style.minHeight = `${newHeight}px`;
+
                     } else {
                         moreInfo.style.display = "none";
                         exerciseCount.style.display = "block";
                         expandButton.textContent = "View Workout";
-                        lineBreak.style.display = "none";
+                        workoutDiv.style.minHeight = "";
+
                     }
 
-                    
+
+
                 });
             }
         });
