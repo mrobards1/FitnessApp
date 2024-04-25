@@ -1,3 +1,12 @@
+:root {
+    --offwhite: #f5f5f5;
+    --lightpurple: #9f5f91;
+    --purple: #572c57;
+    --reddish: #e26972;
+    --yellow: #f6ea98;
+}
+
+
 * {
     margin: 0;
     padding: 0;
@@ -9,7 +18,7 @@
     justify-content: center;
     justify-content: center;
     align-items: center;
-    background-color: black;
+    background-color: var(--offwhite);
     min-height: 100vh;
 }
 
@@ -18,13 +27,14 @@ form {
     min-height: 100px;
     padding: 20px;
     border: 1px solid #ccc;
-    background-color: #f9f9f9;
+    background-color: var(--reddish);
     border-radius: 10px;
 }
 
 .workoutName {
     margin-top: -10px;
     margin-bottom: 25px;
+    color: white;
 }
 
 .workoutName input, .exerciseName input{
@@ -34,6 +44,7 @@ form {
     border-bottom: 1px solid black;
     width: 90%;
     font-size: 25px;
+   
 }
 
 .exerciseName input {
@@ -43,13 +54,16 @@ form {
 
 .exercise {
     margin-bottom: 10px;
+    background-color: var(--yellow);
    
 }
 
 .setGroup {
     display: flex;
-    background-color: green;
+    background-color: var(--offwhite);
     margin-bottom: 4px;
+    justify-content: center;
+    width: 100%;
    
 }
 
@@ -62,7 +76,7 @@ form {
 }
 
 .set {
-    padding-right: 20px;
+    
     width: 100%;
 
 }
@@ -91,13 +105,7 @@ form {
     display: inline-block;
 }
 
-.lineBreak {
-    background-color: black;
-    width: 95%;
-    height: .3px !important;
-    margin: auto;
-    margin-bottom: 10px;
-}
+
 
 .weekday {
     margin-bottom: 20px;
@@ -126,14 +134,18 @@ form {
     margin-right: 20px; 
     outline: none;
     border: none;
-    border-bottom: 1px solid black;
+    /* border-bottom: 1px solid black; */
 }
 
-.break {
-    width: 150%;
-    height: 4px;
-    background-color: black;
-    display: flex;
-    margin-left: -50px;
+
+.deleteExercise, .deleteSet {
+    color: var(--reddish);
+    background: none;
+    border: none;
+    font-size: 20px;
+}
+
+.deleteSet {
+    font-size: 15px;
 }
 

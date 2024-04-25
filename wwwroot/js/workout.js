@@ -1,9 +1,13 @@
 //workout.js
-
 var workouts = [];
 
 document.getElementById('workout-form').addEventListener('submit', function (event) {
     event.preventDefault();
+
+    // Retrieve existing workouts data from local storage
+    var existingWorkoutsData = localStorage.getItem('workoutsData');
+    console.log("Existing Workouts Data:", existingWorkoutsData); 
+    workouts = existingWorkoutsData ? JSON.parse(existingWorkoutsData) : [];
 
     var workout = {};
 
@@ -70,13 +74,13 @@ document.getElementById('workout-form').addEventListener('submit', function (eve
 
     console.log("workouts: ", workouts);
 
-
     localStorage.setItem('workoutsData', JSON.stringify(workouts));
 
     // console.log("Before redirection");
     // window.location.href = "/Users/mitchrobards/FitnessApp/Pages/week.cshtml";
     // console.log("After redirection");
 });
+
 
 
 
@@ -91,17 +95,17 @@ document.getElementById('add-exercise').addEventListener('click', function () {
     newExercise.innerHTML = `
         <div class="exerciseName">
                 <input type="text" class="exercise" name="exercise" placeholder="Exercise Name" required>
-                <button type="button" class="deleteExercise">Delete</button>
+                <button type="button" class="deleteExercise"><i class="fa-solid fa-delete-left"></i></button>
             </div>
 
             <button type="button" class="addSet">Add Set</button>
-            <button type="button" class="deleteSet">Delete Set</button> 
+            
             <div class="set-container"></div>
             <div class="rest">
                 <label for="rest">Rest Between Sets</label>
                 <input type="number" class="rest" name="rest">
             </div>
-            <div class="break"></div>
+            
     `;
     exercisesContainer.appendChild(newExercise);
 
@@ -133,7 +137,7 @@ document.getElementById('add-exercise').addEventListener('click', function () {
         <div>
             <input type="number" class="time" name="time" placeholder="Time">
         </div>
-        <button type="button" class="deleteSet">Delete Set</button>
+        <button type="button" class="deleteSet"><i class="fa-solid fa-circle-minus"></i></button>
     </div>
 `;
         setContainer.appendChild(newSet);
