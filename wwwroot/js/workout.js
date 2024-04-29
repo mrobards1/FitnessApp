@@ -6,7 +6,7 @@ document.getElementById('workout-form').addEventListener('submit', function (eve
 
     // Retrieve existing workouts data from local storage
     var existingWorkoutsData = localStorage.getItem('workoutsData');
-    console.log("Existing Workouts Data:", existingWorkoutsData); 
+    console.log("Existing Workouts Data:", existingWorkoutsData);
     workouts = existingWorkoutsData ? JSON.parse(existingWorkoutsData) : [];
 
     var workout = {};
@@ -218,5 +218,47 @@ function updateSelectedOptions() {
             selectedOptionsDiv.appendChild(document.createTextNode('    '));
         }
     });
+}
+
+window.addEventListener('DOMContentLoaded', function () {
+    var workoutsData = localStorage.getItem('workoutsData');
+    var workouts = JSON.parse(workoutsData);
+
+    workouts.forEach(function (workout) {
+        workoutView(workout)
+    });
+
+});
+
+function workoutView(workout) {
+    const workoutViewDiv = document.createElement('div');
+    workoutViewDiv.className = "workoutViewDiv";
+
+    const workoutTitle = document.createElement('h1');
+    workoutTitle.textContent = workout.name;
+    workoutViewDiv.appendChild(workoutTitle);
+
+    const exerciseCount = document.createElement('p');
+    exerciseCount.textContent = `Exercises: ${workout.exercises.length}`;
+    exerciseCount.className = 'exerciseCount';
+    workoutViewDiv.appendChild(exerciseCount);
+
+
+    var weekdayString = "";
+    const dayNames = ["Sun", "Mon", "Tues", "Wed", "Thurs", "Fri", "Sat"];
+    workout.weekDays.forEach(day => {
+        var dayConvert = dayNames[day];
+        weekdayString += dayConvert + " "; 
+    });
+
+    const scheduledDays = document.createElement('p'); 
+    scheduledDays.textContent = weekdayString;
+    workoutViewDiv.appendChild(scheduledDays);
+
+
+
+
+
+    document.querySelector('.workoutView').appendChild(workoutViewDiv);
 }
 

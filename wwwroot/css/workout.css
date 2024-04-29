@@ -149,3 +149,19 @@ form {
     font-size: 15px;
 }
 
+.workoutView {
+    width: 800px;
+    height: auto; 
+    margin-top: -200px;
+    background-color: var(--reddish);
+}
+
+.workoutViewDiv {
+    width: 100%;
+    min-height: 30px;
+    margin-bottom: 20px;
+    color: black;
+}
+
+
+
