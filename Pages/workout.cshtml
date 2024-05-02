@@ -16,7 +16,7 @@
 
 <body>
     <div class="container">
-        <form id="workout-form" action="/submit-workout" method="post">
+        <form id="workoutForm" action="/submit-workout" method="post" style="display: none;">
             @* <h1>Build Your Workout</h1> *@
             <div id="exercises-container">
                 <div class="exercise">
@@ -106,12 +106,20 @@
 
         </form>
 
+        <div>
+        <button type="button" id="createWorkout">Create Workout</button>
     </div>
+
+    </div>
+
+    
 
     <div class="workoutView">
         <h1>Workouts View</h1>
 
     </div>
+
+     
 
     <script src="~/js/workout.js"></script>
 </body>

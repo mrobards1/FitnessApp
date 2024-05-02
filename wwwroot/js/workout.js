@@ -1,7 +1,27 @@
 //workout.js
 var workouts = [];
 
-document.getElementById('workout-form').addEventListener('submit', function (event) {
+var workoutId = 0;
+
+document.getElementById('createWorkout').addEventListener('click', function () {
+    var showForm = document.getElementById('workoutForm');
+    if (showForm.style.display == 'none') {
+        showForm.style.display = 'block';
+        this.textContent = "Hide Form";
+        this.style.position = 'static';
+        this.style.top = '';
+        this.style.transform = 'none';
+    } else {
+        showForm.style.display = 'none';
+        this.style.position = 'absolute';
+        this.style.top = '50px';
+        this.style.left = '50%';
+        this.style.transform = 'translateX(-50%)';
+        this.textContent = "Create Workout";
+    }
+});
+
+document.getElementById('workoutForm').addEventListener('submit', function (event) {
     event.preventDefault();
 
     // Retrieve existing workouts data from local storage
@@ -52,7 +72,6 @@ document.getElementById('workout-form').addEventListener('submit', function (eve
                 exercise.rest = restInput.value;
             }
 
-
             if (sets.length > 0) {
                 workout.exercises.push(exercise);
             }
@@ -70,11 +89,28 @@ document.getElementById('workout-form').addEventListener('submit', function (eve
 
     workout.weekDays = weekDays;
 
+    workoutId++;
+
+    workout.id = workoutId;
+
+
     workouts.push(workout);
 
     console.log("workouts: ", workouts);
 
     localStorage.setItem('workoutsData', JSON.stringify(workouts));
+
+    handleWorkoutsData();
+
+    this.style.display = 'none';
+    
+    var createWorkouttButton = document.getElementById('createWorkout');
+
+    createWorkouttButton.style.position = 'absolute';
+    createWorkouttButton.style.top = '50px';
+    createWorkouttButton.style.left = '50%';
+    createWorkouttButton.style.transform = 'translateX(-50%)';
+    createWorkouttButton.textContent = "Create Workout";
 
     // console.log("Before redirection");
     // window.location.href = "/Users/mitchrobards/FitnessApp/Pages/week.cshtml";
@@ -220,19 +256,18 @@ function updateSelectedOptions() {
     });
 }
 
-window.addEventListener('DOMContentLoaded', function () {
+function handleWorkoutsData() {
     var workoutsData = localStorage.getItem('workoutsData');
-    var workouts = JSON.parse(workoutsData);
-
+    workouts = JSON.parse(workoutsData);
     workouts.forEach(function (workout) {
         workoutView(workout)
     });
-
-});
+}
 
 function workoutView(workout) {
     const workoutViewDiv = document.createElement('div');
     workoutViewDiv.className = "workoutViewDiv";
+
 
     const workoutTitle = document.createElement('h1');
     workoutTitle.textContent = workout.name;
@@ -248,17 +283,40 @@ function workoutView(workout) {
     const dayNames = ["Sun", "Mon", "Tues", "Wed", "Thurs", "Fri", "Sat"];
     workout.weekDays.forEach(day => {
         var dayConvert = dayNames[day];
-        weekdayString += dayConvert + " "; 
+        weekdayString += dayConvert + " ";
     });
 
-    const scheduledDays = document.createElement('p'); 
+    const scheduledDays = document.createElement('p');
     scheduledDays.textContent = weekdayString;
     workoutViewDiv.appendChild(scheduledDays);
 
+    const deleteWorkoutButton = document.createElement('button');
+    deleteWorkoutButton.className = 'deleteWorkout';
+    deleteWorkoutButton.textContent = 'Delete Workout';
+    console.log("Workout ID before setting data attribute:", workout.id);
+    deleteWorkoutButton.setAttribute('data-workout-id', workout.id);
+    workoutViewDiv.appendChild(deleteWorkoutButton);
+    // when clicked, removes workout from workouts object and removed item from view
+    deleteWorkoutButton.addEventListener('click', function () {
+        const id = parseInt(this.getAttribute('data-workout-id'));
+        console.log("Clicked delete button for workout id:", id);
+
+        workouts = workouts.filter(workout => workout.id !== id);
+        console.log("Workouts array after deletion:", workouts);
+
+        workoutViewDiv.remove();
+
+        localStorage.setItem('workoutsData', JSON.stringify(workouts));
+
+
+    });
 
 
 
 
     document.querySelector('.workoutView').appendChild(workoutViewDiv);
 }
+
+window.addEventListener('DOMContentLoaded', handleWorkoutsData);
+
 
