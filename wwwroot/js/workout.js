@@ -103,7 +103,7 @@ document.getElementById('workoutForm').addEventListener('submit', function (even
     handleWorkoutsData();
 
     this.style.display = 'none';
-    
+
     var createWorkouttButton = document.getElementById('createWorkout');
 
     createWorkouttButton.style.position = 'absolute';
@@ -129,9 +129,9 @@ document.getElementById('add-exercise').addEventListener('click', function () {
     const newExercise = document.createElement('div');
     newExercise.classList.add('exercise');
     newExercise.innerHTML = `
+    <div class="test">
         <div class="exerciseName">
                 <input type="text" class="exercise" name="exercise" placeholder="Exercise Name" required>
-                <button type="button" class="deleteExercise"><i class="fa-solid fa-delete-left"></i></button>
             </div>
 
             <button type="button" class="addSet">Add Set</button>
@@ -141,6 +141,8 @@ document.getElementById('add-exercise').addEventListener('click', function () {
                 <label for="rest">Rest Between Sets</label>
                 <input type="number" class="rest" name="rest">
             </div>
+            <button type="button" class="deleteExercise">Delete Exercise</button>
+    <div>
             
     `;
     exercisesContainer.appendChild(newExercise);
@@ -164,15 +166,18 @@ document.getElementById('add-exercise').addEventListener('click', function () {
         <div class="set">
             <label for="set">Set ${setNum}:</label>
         </div>
-        <div>
-            <input type="number" class="weight" name="weight" placeholder="lbs">
-        </div>
-        <div>
-            <input type="number" class="reps" name="reps" min="1" placeholder="Reps:">
-        </div>
-        <div>
-            <input type="number" class="time" name="time" placeholder="Time">
-        </div>
+        <div class="setItem">
+        <input type="number" class="weight" name="weight">
+        <p>lbs</p>
+    </div>
+    <div class="setItem">
+        <input type="number" class="reps" name="reps" min="1">
+        <p>Reps</p>
+    </div>
+    <div class="setItem">
+        <input type="number" class="time" name="time">
+        <p>Time</p>
+    </div>
         <button type="button" class="deleteSet"><i class="fa-solid fa-circle-minus"></i></button>
     </div>
 `;

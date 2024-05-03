@@ -1,9 +1,9 @@
 :root {
     --offwhite: #f5f5f5;
-    --lightpurple: #9f5f91;
-    --purple: #572c57;
     --reddish: #e26972;
-    --yellow: #f6ea98;
+    --darkgrey: #343a40;
+    --lightergrey: #6c757d;
+    --lightgrey: #ced4da;
 }
 
 
@@ -30,7 +30,7 @@
 .weekday {
     width: 300px;
     height: 500px;
-    background-color: var(--reddish);
+    background-color: var(--darkgrey);
     display: flex;
     flex-direction: column;
     margin-top: 40px;
@@ -47,17 +47,17 @@
 .workoutDiv {
     width: 90%;
     min-height: 100px;
-    background-color: var(--yellow);
+    background-color: var(--lightgrey);
     margin: 0px auto;
     margin-bottom: 10px;
     border-radius: 5px;
-    color: var(--lightpurple);
+    color: var(--darkgrey);
     box-shadow: 0px 3px 4px rgba(0, 0, 0, 0.3);
     
 }
 
 .titleArea {
-    background-color: #E29D69;
+    background-color: var(--reddish);
     height: 60px;
     width: 100%;
     display: flex;
@@ -145,6 +145,8 @@
     color: white;
     border-radius: 3px;
     padding: 1px;
+    padding-left: 6px;
+    padding-right: 6px;
     font-weight: bold;
     
 }

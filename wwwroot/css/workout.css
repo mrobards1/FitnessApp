@@ -4,7 +4,14 @@
     --purple: #572c57;
     --reddish: #e26972;
     --yellow: #f6ea98;
+
+    --offwhite: #f5f5f5;
+    --reddish: #e26972;
+    --darkgrey: #343a40;
+    --lightergrey: #6c757d;
+    --lightgrey: #ced4da;
 }
+
 
 
 * {
@@ -23,12 +30,32 @@
     min-height: 100vh;
 }
 
+#createWorkout {
+    padding: 5px;
+    display: block;
+    border: none;
+    margin: 0 auto;
+    margin-top: 10px;
+    box-shadow: 0px 1px 0.5px rgba(0, 0, 0, 0.5);
+    font-size: 30px;
+    border-radius: 3px;
+    background-color: var(--reddish);
+    color: var(--offwhite);
+    font-weight: bold;
+    width: auto;
+    height: auto;
+    position: absolute;
+    top: 50px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
 form {
     width: 500px;
     min-height: 100px;
     padding: 20px;
     border: 1px solid #ccc;
-    background-color: var(--reddish);
+    background-color: var(--darkgrey);
     border-radius: 10px;
     margin-top: -300px;
 }
@@ -39,62 +66,103 @@ form {
     color: white;
 }
 
-.workoutName input, .exerciseName input{
-    outline: none;
+.workoutName input,
+.exerciseName input {
     border: none;
     background: none;
-    border-bottom: 1px solid black;
-    width: 90%;
+    width: 100%;
     font-size: 25px;
-   
+    color: var(--offwhite);
+
+}
+
+.workoutName input {
+    font-size: 32px;
+    border-bottom: 2px solid var(--offwhite);
+    background-color: #343a40;
+    outline: none;
 }
 
 .exerciseName input {
+    width: 94%;
     font-size: 18px;
-    border-bottom: none;
+    border-bottom: 2px solid var(--offwhite);
 }
+
+.workoutName input::placeholder,
+.exerciseName input::placeholder {
+    color: var(--offwhite);
+}
+
 
 .exercise {
     margin-bottom: 10px;
-    background-color: var(--yellow);
-   
+    /* background-color: var(--yellow); */
+    color: white;
+
 }
+
 
 .setGroup {
     display: flex;
     background-color: var(--offwhite);
     margin-bottom: 4px;
     justify-content: center;
+    align-items: center;
     width: 100%;
-   
+    height: 28px;
+    color: var(--reddish);
+    border-radius: 3px;
+    padding-left: 10px;
+    padding-right: 10px;
+    box-shadow: 0px 1px 0.5px rgba(0, 0, 0, 0.5);
+
 }
 
 .setGroup input {
-    width: 50px;
-    margin-right: 4px;
+    width: 40px;
     border: none;
     outline: none;
-    border-bottom: 1px solid black;
+    color: var(--reddish);
+    background-color: var(--lightgrey);
+    border: none;
+    border-radius: 5px;
+    padding: 3px;
+
+    
 }
 
 .set {
-    
+
     width: 100%;
 
 }
 
+.setItem {
+    display: flex;
+    margin-right: 10px;
+    padding-left: 10px;
+}
+
+.setItem p {
+    margin-left: 2px;
+    margin-top: 1.5px;
+    
+}
+
+
 .container .exerciseSchedule {
     position: absolute;
-  width: 500px;
-  height: 500px;
-  background-color: beige;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  opacity: 0.9;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+    width: 500px;
+    height: 500px;
+    background-color: beige;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0.9;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 
@@ -119,41 +187,48 @@ form {
     margin-right: 20px;
 }
 
-.add_button, .submit {
+.add_button,
+.submit {
     display: flex;
     justify-content: center;
 }
+
 .rest {
     display: flex;
     align-items: center;
     width: 100%;
     margin-bottom: 10px;
+    background-color: var(--lightergrey);
 }
 
 .rest input {
     margin-left: auto;
     width: 50px;
-    margin-right: 20px; 
+    margin-right: 20px;
     outline: none;
     border: none;
     /* border-bottom: 1px solid black; */
 }
 
 
-.deleteExercise, .deleteSet {
+.deleteExercise {
+    display: block; 
+    margin: 0 auto;
+}
+
+
+.deleteSet {
     color: var(--reddish);
     background: none;
     border: none;
-    font-size: 20px;
+    font-size: 18px;
+    border-radius: 50%;
 }
 
-.deleteSet {
-    font-size: 15px;
-}
 
 .workoutView {
     width: 800px;
-    height: auto; 
+    height: auto;
     margin-top: -200px;
     background-color: var(--reddish);
 }
@@ -168,17 +243,28 @@ form {
 #workoutForm,
 #createWorkout {
     display: block;
-    margin-bottom: 10px; /* Adjust as needed */
-}
-
-#createWorkout {
-    width: 200px;
-    height: 25px;
-    position: absolute;
-    top: 50px;
-    left: 50%;
-    transform: translateX(-50%);
+    margin-bottom: 10px;
+    /* Adjust as needed */
 }
 
 
+.test {
+    width: 100%;
+    height: auto;
+    padding: 8px;
+    background-color: var(--reddish);
+    border-radius: 3px;
 
+}
+
+.addSet {
+    padding: 2px;
+    border: none;
+    box-shadow: 0px 1px 0.5px rgba(0, 0, 0, 0.5);
+    font-size: 12px;
+    border-radius: 3px;
+    background-color: var(--offwhite);
+    color: var(--reddish);
+    font-weight: bold;
+    margin-bottom: 4px;
+}
