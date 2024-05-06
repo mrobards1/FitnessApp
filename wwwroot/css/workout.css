@@ -28,7 +28,11 @@
     background-color: var(--offwhite);
     flex-direction: column;
     min-height: 100vh;
+    z-index: 1; 
 }
+
+
+
 
 #createWorkout {
     padding: 5px;
@@ -54,8 +58,8 @@ form {
     width: 500px;
     min-height: 100px;
     padding: 20px;
-    border: 1px solid #ccc;
-    background-color: var(--darkgrey);
+    border: 2px solid var(--reddish);
+    background-color: var(--offwhite);
     border-radius: 10px;
     margin-top: -300px;
 }
@@ -78,8 +82,7 @@ form {
 
 .workoutName input {
     font-size: 32px;
-    border-bottom: 2px solid var(--offwhite);
-    background-color: #343a40;
+    border-bottom: 2px solid var(--reddish);
     outline: none;
 }
 
@@ -89,9 +92,13 @@ form {
     border-bottom: 2px solid var(--offwhite);
 }
 
-.workoutName input::placeholder,
-.exerciseName input::placeholder {
-    color: var(--offwhite);
+
+.exercise input::placeholder {
+    color: var(--offwhite)
+}
+
+.workoutName input::placeholder {
+    color: var(--reddish);
 }
 
 
@@ -163,7 +170,10 @@ form {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    border: 2px solid var(--reddish);
+    z-index: 3;
 }
+
 
 
 .scheduleTitle {
@@ -248,19 +258,19 @@ form {
 }
 
 
-.test {
+.exerciseGroup {
     width: 100%;
     height: auto;
     padding: 8px;
     background-color: var(--reddish);
+    box-shadow: 0px 1px 0.5px rgba(0, 0, 0, 0.5);
     border-radius: 3px;
 
 }
 
-.addSet {
+.addSet, #add-exercise{
     padding: 2px;
     border: none;
-    box-shadow: 0px 1px 0.5px rgba(0, 0, 0, 0.5);
     font-size: 12px;
     border-radius: 3px;
     background-color: var(--offwhite);
@@ -268,3 +278,9 @@ form {
     font-weight: bold;
     margin-bottom: 4px;
 }
+
+#add-exercise {
+    background-color: var(--reddish);
+    color: var(--offwhite);
+}
+

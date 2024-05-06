@@ -129,7 +129,7 @@ document.getElementById('add-exercise').addEventListener('click', function () {
     const newExercise = document.createElement('div');
     newExercise.classList.add('exercise');
     newExercise.innerHTML = `
-    <div class="test">
+    <div class="exerciseGroup">
         <div class="exerciseName">
                 <input type="text" class="exercise" name="exercise" placeholder="Exercise Name" required>
             </div>
@@ -205,15 +205,20 @@ document.getElementById('add-exercise').addEventListener('click', function () {
     });
 });
 
-
 document.getElementById('showSchedule').addEventListener('click', function () {
     var scheduleSelect = document.querySelector('.exerciseSchedule');
-    if (scheduleSelect.style.display == "none") {
-        scheduleSelect.style.display = "block";
-    } else {
-        scheduleSelect.style.display = "none";
+
+    if (scheduleSelect) {
+        if (scheduleSelect.style.display === "none") {
+            scheduleSelect.style.display = "block";
+          
+        } else {
+            scheduleSelect.style.display = "none";
+        }
     }
 });
+
+
 
 
 

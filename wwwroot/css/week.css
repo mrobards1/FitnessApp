@@ -30,7 +30,8 @@
 .weekday {
     width: 300px;
     height: 500px;
-    background-color: var(--darkgrey);
+    /* background-color: var(--darkgrey); */
+    border: 1px solid var(--reddish);
     display: flex;
     flex-direction: column;
     margin-top: 40px;

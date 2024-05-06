@@ -4,6 +4,7 @@
   --purple: #572c57;
   --reddish: #e26972;
   --yellow: #f6ea98;
+  --darkgrey: #343a40;
 }
 
 * {
@@ -18,11 +19,12 @@
   padding: 0;
   width: 100px;
   min-height: 100vh;
-  background-color: var(--reddish);
+  background-color: var(--darkgrey);
   color: white;
   text-align: center;
   position: fixed;
   padding-top: 20px;
+  z-index: 3;
 }
 
 .navlist a {
