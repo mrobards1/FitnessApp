@@ -207,16 +207,23 @@ document.getElementById('add-exercise').addEventListener('click', function () {
 
 document.getElementById('showSchedule').addEventListener('click', function () {
     var scheduleSelect = document.querySelector('.exerciseSchedule');
-
+    var blurredBackground = document.querySelector('.blurredBackground');
     if (scheduleSelect) {
         if (scheduleSelect.style.display === "none") {
             scheduleSelect.style.display = "block";
-          
+            blurredBackground.style.display = "block";
+
         } else {
             scheduleSelect.style.display = "none";
         }
     }
 });
+
+document.getElementById('closeSchedule').addEventListener('click', function () {
+    var blurredBackground = document.querySelector('.blurredBackground');
+    blurredBackground.style.display = "none";
+});
+
 
 
 
@@ -247,24 +254,26 @@ function toggleCheckbox(checkbox) {
     }
 
     updateSelectedOptions();
-
 }
 
 function updateSelectedOptions() {
     var selectedOptionsDiv = document.getElementById('selectedOptions');
-    selectedOptionsDiv.innerHTML = '';
+    var checkboxes = document.querySelectorAll('.exerciseSchedule input[type="checkbox"]');
+    var selectedOption = '';
 
-    var checkboxes = document.querySelectorAll('#exerciseSchedule input[type="checkbox"]');
     checkboxes.forEach(function (checkbox) {
         if (checkbox.checked) {
-            var labelText = checkbox.parentNode.textContent.trim();
-            var optionText = document.createTextNode(labelText);
-            selectedOptionsDiv.appendChild(optionText);
-
-            selectedOptionsDiv.appendChild(document.createTextNode('    '));
+            var parentText = checkbox.parentElement.textContent.trim();
+            var dayAbbr = parentText.substring(0, 2);
+            selectedOption += dayAbbr + " ";
         }
     });
+
+    selectedOptionsDiv.textContent = selectedOption;
 }
+
+
+
 
 function handleWorkoutsData() {
     var workoutsData = localStorage.getItem('workoutsData');

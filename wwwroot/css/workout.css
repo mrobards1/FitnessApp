@@ -62,7 +62,7 @@ form {
     border: 2px solid var(--reddish);
     background-color: var(--offwhite);
     border-radius: 10px;
-    margin-top: -300px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.6);
 }
 
 .workoutName {
@@ -161,7 +161,7 @@ form {
 
 .container .exerciseSchedule {
     position: absolute;
-    width: 500px;
+    width: 350px;
     min-height: 300px;
     background-color: var(--offwhite);
     display: flex;
@@ -185,11 +185,18 @@ form {
     margin-bottom: 10px;
     font-weight: bold;
 }
+.schedule {
+    display: flex;
+    justify-content: space-between; 
+    align-items: center;
+}
+
 
 .schedule label,
 .schedule #selectedOptions {
     display: inline-block;
 }
+
 
 
 .weekday {
@@ -291,7 +298,7 @@ form {
 
 }
 
-.addSet, #add-exercise, #closeSchedule{
+.addSet, #add-exercise, #closeSchedule, #showSchedule, #save{
     padding: 2px;
     border: none;
     font-size: 12px;
@@ -302,7 +309,7 @@ form {
     margin-bottom: 4px;
 }
 
-#add-exercise, #closeSchedule {
+#add-exercise, #closeSchedule, #showSchedule, #save{
     background-color: var(--reddish);
     color: var(--offwhite);
 }
@@ -313,6 +320,19 @@ form {
     transform: translateX(-50%);
     margin-bottom: 50px;
 }
+
+.blurredBackground {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    backdrop-filter: blur(10px);
+}
+
+
+
 
 
 

@@ -15,6 +15,8 @@
 </head>
 
 <body>
+
+    <div class="blurredBackground" style="display: none;"></div>
     <div class="container">
         <form id="workoutForm" action="/submit-workout" method="post" style="display: none;">
             @* <h1>Build Your Workout</h1> *@
@@ -29,16 +31,20 @@
             <div class="add_button">
                 <button type="button" id="add-exercise">Add Exercise</button>
             </div>
-            <div class="schedule">
-                <label for='schedule'>Schedule For: </label>
-                <div id="selectedOptions"></div>
-            </div>
-
             <div class="scheduleButton">
                 <button type="button" id="showSchedule">Show Schedule Options</button>
             </div>
+            <div class="schedule">
+                <label for='schedule'>Schedule For: </label>
+                <div id="selectedOptions"></div>
+                
+            </div>
+
+            
+
+    
             <div class="submit">
-                <button type="submit">Save Workout</button>
+                <button id="save" type="submit">Save Workout</button>
             </div>
             
             <div class="exerciseSchedule" style="display:none">
@@ -111,6 +117,7 @@
 
             </div>
 
+
         </form>
 
         <div>
@@ -127,6 +134,8 @@
         <h1>Workouts View</h1>
 
     </div>
+
+    
 
      
 
