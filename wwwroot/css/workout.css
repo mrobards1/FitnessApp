@@ -185,14 +185,18 @@ form {
     margin-bottom: 10px;
     font-weight: bold;
 }
+
 .schedule {
     display: flex;
     justify-content: space-between; 
     align-items: center;
+    background-color: black;
+    
+    
 }
 
 
-.schedule label,
+.schedule #showSchedule,
 .schedule #selectedOptions {
     display: inline-block;
 }

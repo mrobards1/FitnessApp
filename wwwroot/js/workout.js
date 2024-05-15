@@ -264,7 +264,7 @@ function updateSelectedOptions() {
     checkboxes.forEach(function (checkbox) {
         if (checkbox.checked) {
             var parentText = checkbox.parentElement.textContent.trim();
-            var dayAbbr = parentText.substring(0, 2);
+            var dayAbbr = parentText.substring(0, 3);
             selectedOption += dayAbbr + " ";
         }
     });
