@@ -134,7 +134,7 @@ document.getElementById('add-exercise').addEventListener('click', function () {
                 <input type="text" class="exercise" name="exercise" placeholder="Exercise Name" required>
             </div>
 
-            <button type="button" class="addSet">Add Set</button>
+            <button type="button" class="addSet"><i class="fa-solid fa-plus"></i> Add Set</button>
             
             <div class="set-container"></div>
             <div class="rest">
