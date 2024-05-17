@@ -141,7 +141,7 @@ document.getElementById('add-exercise').addEventListener('click', function () {
                 <label for="rest">Rest Between Sets</label>
                 <input type="number" class="rest" name="rest">
             </div>
-            <button type="button" class="deleteExercise">Delete Exercise</button>
+            <button type="button" class="deleteExercise"><i class="fa-solid fa-minus"></i> Delete Exercise</button>
     <div>
             
     `;
@@ -178,7 +178,7 @@ document.getElementById('add-exercise').addEventListener('click', function () {
         <input type="number" class="time" name="time">
         <p>Time</p>
     </div>
-        <button type="button" class="deleteSet"><i class="fa-solid fa-circle-minus"></i></button>
+        <button type="button" class="deleteSet"><i class="fa-solid fa-square-minus"></i></button>
     </div>
 `;
         setContainer.appendChild(newSet);
@@ -223,12 +223,6 @@ document.getElementById('closeSchedule').addEventListener('click', function () {
     var blurredBackground = document.querySelector('.blurredBackground');
     blurredBackground.style.display = "none";
 });
-
-
-
-
-
-
 
 
 document.getElementById('closeSchedule').addEventListener('click', function () {

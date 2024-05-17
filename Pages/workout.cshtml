@@ -16,7 +16,6 @@
 
 <body>
 
-    <div class="blurredBackground" style="display: none;"></div>
     <div class="container">
         <form id="workoutForm" action="/submit-workout" method="post" style="display: none;">
             @* <h1>Build Your Workout</h1> *@
@@ -32,19 +31,19 @@
                 <button type="button" id="add-exercise">Add Exercise</button>
             </div>
             <div class="schedule">
-                <button type="button" id="showSchedule"><i class="fa-solid fa-calendar scheduleIcon"></i> Schedule Options</button>
+                <button type="button" id="showSchedule"><i class="fa-solid fa-calendar scheduleIcon"></i> Schedule
+                    Options</button>
                 <div id="selectedOptions"></div>
-                
+
             </div>
 
-            
 
-    
             <div class="submit">
                 <button id="save" type="submit">Save Workout</button>
             </div>
-            
+            <div class="blurredBackground" style="display: none;"></div>
             <div class="exerciseSchedule" style="display:none">
+                
                 <p class="scheduleTitle">Schedule For</p>
                 <div class="weekday">
                     <label>
@@ -54,7 +53,7 @@
                     </label>
                     <div class="scheduleBreak"></div>
                 </div>
-               
+
                 <div class="weekday">
                     <label>
                         <i class="fa-regular fa-square"></i>
@@ -63,7 +62,7 @@
                     </label>
                     <div class="scheduleBreak"></div>
                 </div>
-                
+
                 <div class="weekday">
                     <label>
                         <i class="fa-regular fa-square"></i>
@@ -72,7 +71,7 @@
                     </label>
                     <div class="scheduleBreak"></div>
                 </div>
-                
+
                 <div class="weekday">
                     <label>
                         <i class="fa-regular fa-square"></i>
@@ -81,7 +80,7 @@
                     </label>
                     <div class="scheduleBreak"></div>
                 </div>
-                
+
                 <div class="weekday">
                     <label>
                         <i class="fa-regular fa-square"></i>
@@ -90,7 +89,7 @@
                     </label>
                     <div class="scheduleBreak"></div>
                 </div>
-                
+
                 <div class="weekday">
                     <label>
                         <i class="fa-regular fa-square"></i>
@@ -99,7 +98,7 @@
                     </label>
                     <div class="scheduleBreak"></div>
                 </div>
-                
+
                 <div class="weekday">
                     <label>
                         <i class="fa-regular fa-square"></i>
@@ -118,26 +117,26 @@
         </form>
 
         <div>
-        <button type="button" id="createWorkout">Create Workout</button>
+            <button type="button" id="createWorkout">Create Workout</button>
+
+
+
+        </div>
+
+    </div>
+
+
+    <div class="workoutViewPage">
+        <div class="workoutView">
         
-
     </div>
 
-    </div>
 
-    <div id="overlay"></div>
 
-    <div class="workoutView">
-        <h1>Workouts View</h1>
 
-    </div>
 
-    
-
-     
 
     <script src="~/js/workout.js"></script>
 </body>
 
 </html>
-
