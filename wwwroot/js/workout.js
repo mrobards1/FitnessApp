@@ -24,6 +24,7 @@ document.getElementById('createWorkout').addEventListener('click', function () {
 document.getElementById('workoutForm').addEventListener('submit', function (event) {
     event.preventDefault();
 
+
     // Retrieve existing workouts data from local storage
     var existingWorkoutsData = localStorage.getItem('workoutsData');
     console.log("Existing Workouts Data:", existingWorkoutsData);
@@ -100,8 +101,6 @@ document.getElementById('workoutForm').addEventListener('submit', function (even
 
     localStorage.setItem('workoutsData', JSON.stringify(workouts));
 
-    handleWorkoutsData();
-
     this.style.display = 'none';
 
     var createWorkouttButton = document.getElementById('createWorkout');
@@ -115,6 +114,9 @@ document.getElementById('workoutForm').addEventListener('submit', function (even
     // console.log("Before redirection");
     // window.location.href = "/Users/mitchrobards/FitnessApp/Pages/week.cshtml";
     // console.log("After redirection");
+
+    addWorkout();
+    
 });
 
 
@@ -267,14 +269,23 @@ function updateSelectedOptions() {
 }
 
 
-
-
 function handleWorkoutsData() {
     var workoutsData = localStorage.getItem('workoutsData');
     workouts = JSON.parse(workoutsData);
+    document.querySelector('.workoutView').innerHTML = '';
+    
     workouts.forEach(function (workout) {
-        workoutView(workout)
+        workoutView(workout);
     });
+}
+
+function addWorkout() {
+    var workoutData = localStorage.getItem('workoutsData');
+    console.log('addworkout was called');
+    if (workouts.length > 0) {
+        const lastWorkout = workouts[workouts.length - 1]; // Target the last element
+        workoutView(lastWorkout);
+    }
 }
 
 function workoutView(workout) {

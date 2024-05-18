@@ -80,8 +80,15 @@ form {
     background: none;
     width: 100%;
     font-size: 25px;
-    color: var(--offwhite);
 
+}
+
+.exerciseName input {
+    color: var(--offwhite);
+}
+
+.workoutName input {
+    color: var(--reddish);
 }
 
 .workoutName input {
@@ -301,7 +308,7 @@ input[type=number]::-webkit-outer-spin-button {
 .workoutViewPage {
     position: sticky;
     width: 100%;
-    height: 100vh;
+    min-height: 100vh;
     display: flex;
     justify-content: center;
     z-index: 2;
