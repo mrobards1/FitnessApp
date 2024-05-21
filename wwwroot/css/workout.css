@@ -21,6 +21,7 @@
     font-family: Montserrat, sans-serif;
 }
 
+
 .container {
     display: flex;
     justify-content: center;
@@ -30,9 +31,9 @@
     min-height: 100vh;
     width: 100%;
     z-index: 1;
-    position: sticky;
+    /* position: sticky; */
     top: 0;
-
+    padding-top: 50px;
 }
 
 
@@ -52,10 +53,8 @@
     font-weight: bold;
     width: auto;
     height: auto;
-    position: absolute;
-    top: 50px;
-    left: 50%;
-    transform: translateX(-50%);
+    margin-bottom: 20px;
+    
 }
 
 form {
@@ -306,36 +305,132 @@ input[type=number]::-webkit-outer-spin-button {
 
 
 .workoutViewPage {
-    position: sticky;
     width: 100%;
     min-height: 100vh;
     display: flex;
     justify-content: center;
-    z-index: 2;
     background-color: rgba(52, 58, 64, 0.8);
     backdrop-filter: blur(10px);
+    box-shadow: 0px -2px 4px rgba(0, 0, 0, 0.5);
+    transform: translateX(100%);
+    transition: transform 0.2s ease;
+    position: absolute;
+    top: 0;
+    overflow:scroll;
+
+}
+
+.workoutViewPage.opened {
+    transform: translatex(0%);
+
+}
+
+.workoutViewPage.closed {
+    transform: translateX(100%);
 }
 
 .workoutView {
     width: 800px;
     display: flex;
     flex-direction: column;
-    margin-bottom: 10px;
+    margin-top: 75px;
 
+}
+
+.collapseDiv {
+    margin-top: 15px;
+    position: absolute;
+   
+}
+
+#viewWorkoutsButton, #collapseButton {
+    background: none;
+    border: none;
+    background-color: var(--darkgrey);
+    padding: 5px;
+    border-radius: 8px;
+    font-weight: bold;
+}
+
+#viewWorkoutsButton {
+    font-size: 15px;
+    color: var(--offwhite);
+    border-radius: 3px;
+
+}
+
+#collapseButton {
+    color: var(--reddish);
+    background-color: transparent;
+    font-size: 45px;
+}
+
+#collapseButton:hover {
+    color: var(--offwhite);
+    padding: 3px;
+    border-radius: 50%;
+    font-size: 55px;
+    margin-top: -2px;
 }
 
 .workoutViewDiv {
     width: 100%;
     min-height: 30px;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
     color: black;
     background-color: var(--reddish);
+    align-items: center;
+    display: grid;
+    grid-template-columns: 35% 30% 20% 7.5% 7.5%;
+    color: var(--offwhite);
+    padding: 5px;
+    border-radius: 15px;
+    box-shadow: 0px 2px 0.5px rgba(0, 0, 0, 0.5);
 }
+
+.workoutViewDiv h1 {
+   font-size: 30px;
+   margin-left: 20px;
+   overflow: hidden;
+   white-space: nowrap;
+   text-overflow: ellipsis;
+   max-width: 100%; 
+}
+
+.exerciseCount {
+    font-size: 20px;
+    text-align: center;
+}
+
+.boldExercise {
+    font-weight: bold;
+    font-size: 22px;
+}
+
+.scheduledDays {
+    text-align: center;
+    font-size: 22px;
+    font-weight: bold;
+    background-color: rgba(206, 212, 218, 0.3);
+    color: var(--offwhite);
+    border-radius: 4px;
+    padding: 3px;
+    height: 29px;
+
+}
+
+.deleteWorkout, .editWorkoutButton {
+    background: none;
+    border: none;
+    font-size: 23px;
+    color: var(--offwhite)
+}
+
 
 #workoutForm,
 #createWorkout {
     display: block;
-    margin-bottom: 10px;
+    
 }
 
 

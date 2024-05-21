@@ -13,10 +13,6 @@ document.getElementById('createWorkout').addEventListener('click', function () {
         this.style.transform = 'none';
     } else {
         showForm.style.display = 'none';
-        this.style.position = 'absolute';
-        this.style.top = '50px';
-        this.style.left = '50%';
-        this.style.transform = 'translateX(-50%)';
         this.textContent = "Create Workout";
     }
 });
@@ -103,13 +99,7 @@ document.getElementById('workoutForm').addEventListener('submit', function (even
 
     this.style.display = 'none';
 
-    var createWorkouttButton = document.getElementById('createWorkout');
-
-    createWorkouttButton.style.position = 'absolute';
-    createWorkouttButton.style.top = '50px';
-    createWorkouttButton.style.left = '50%';
-    createWorkouttButton.style.transform = 'translateX(-50%)';
-    createWorkouttButton.textContent = "Create Workout";
+    
 
     // console.log("Before redirection");
     // window.location.href = "/Users/mitchrobards/FitnessApp/Pages/week.cshtml";
@@ -288,35 +278,50 @@ function addWorkout() {
     }
 }
 
+document.getElementById('viewWorkoutsButton').addEventListener('click', function() {
+    document.querySelector('.workoutViewPage').classList.toggle('opened');
+});
+
+document.getElementById('collapseButton').addEventListener('click', function() {
+    document.querySelector('.workoutViewPage').classList.toggle('opened');
+});
+
 function workoutView(workout) {
     const workoutViewDiv = document.createElement('div');
     workoutViewDiv.className = "workoutViewDiv";
+
 
 
     const workoutTitle = document.createElement('h1');
     workoutTitle.textContent = workout.name;
     workoutViewDiv.appendChild(workoutTitle);
 
-    const exerciseCount = document.createElement('p');
-    exerciseCount.textContent = `Exercises: ${workout.exercises.length}`;
-    exerciseCount.className = 'exerciseCount';
-    workoutViewDiv.appendChild(exerciseCount);
-
-
     var weekdayString = "";
-    const dayNames = ["Sun", "Mon", "Tues", "Wed", "Thurs", "Fri", "Sat"];
+    const dayNames = ["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"];
     workout.weekDays.forEach(day => {
         var dayConvert = dayNames[day];
         weekdayString += dayConvert + " ";
     });
 
     const scheduledDays = document.createElement('p');
+    scheduledDays.className = 'scheduledDays';
     scheduledDays.textContent = weekdayString;
     workoutViewDiv.appendChild(scheduledDays);
 
+    const exerciseCount = document.createElement('p');
+    exerciseCount.innerHTML = `<span class="boldExercise">${workout.exercises.length}</span> Exercises`;
+    exerciseCount.className = 'exerciseCount';
+    workoutViewDiv.appendChild(exerciseCount);
+
+    const editWorkoutButton = document.createElement('button');
+    editWorkoutButton.className = 'editWorkoutButton';
+    editWorkoutButton.innerHTML = '<i class="fa-solid fa-pen-to-square"></i>';
+    workoutViewDiv.appendChild(editWorkoutButton);
+
+
     const deleteWorkoutButton = document.createElement('button');
     deleteWorkoutButton.className = 'deleteWorkout';
-    deleteWorkoutButton.textContent = 'Delete Workout';
+    deleteWorkoutButton.innerHTML = '<i class="fa-solid fa-square-minus"></i>';
     console.log("Workout ID before setting data attribute:", workout.id);
     deleteWorkoutButton.setAttribute('data-workout-id', workout.id);
     workoutViewDiv.appendChild(deleteWorkoutButton);
