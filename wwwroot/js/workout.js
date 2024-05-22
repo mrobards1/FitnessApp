@@ -3,6 +3,7 @@ var workouts = [];
 
 var workoutId = 0;
 
+
 document.getElementById('createWorkout').addEventListener('click', function () {
     var showForm = document.getElementById('workoutForm');
     if (showForm.style.display == 'none') {
@@ -318,6 +319,19 @@ function workoutView(workout) {
     editWorkoutButton.innerHTML = '<i class="fa-solid fa-pen-to-square"></i>';
     workoutViewDiv.appendChild(editWorkoutButton);
 
+    console.log("Edit Workout Button:", editWorkoutButton);
+
+    editWorkoutButton.onclick = function() {
+        console.log('editButtonClicked');
+        editDiv = document.querySelector('.editDiv');
+
+        if(editDiv.style.display === 'none') {
+            editDiv.style.display = 'flex';
+        } else {
+            editDiv.style.display = 'none';
+        }
+    };
+
 
     const deleteWorkoutButton = document.createElement('button');
     deleteWorkoutButton.className = 'deleteWorkout';
@@ -346,6 +360,16 @@ function workoutView(workout) {
     document.querySelector('.workoutView').appendChild(workoutViewDiv);
 }
 
+document.querySelector('.closeEditDiv').addEventListener('click', function() {
+    console.log('closeEditDiv was clicked');
+    editDiv = document.querySelector('.editDiv');
+
+    editDiv.style.display = 'none';
+});
+
+
 window.addEventListener('DOMContentLoaded', handleWorkoutsData);
+
+
 
 
