@@ -1,7 +1,9 @@
 //workout.js
 var workouts = [];
 
-var workoutId = 0;
+if (!localStorage.getItem('latestWorkoutId')) {
+    localStorage.setItem('latestWorkoutId', '0');
+}
 
 
 document.getElementById('createWorkout').addEventListener('click', function () {
@@ -26,6 +28,10 @@ document.getElementById('workoutForm').addEventListener('submit', function (even
     var existingWorkoutsData = localStorage.getItem('workoutsData');
     console.log("Existing Workouts Data:", existingWorkoutsData);
     workouts = existingWorkoutsData ? JSON.parse(existingWorkoutsData) : [];
+
+    var latestWorkoutId = parseInt(localStorage.getItem('latestWorkoutId'), 10);
+    latestWorkoutId++;
+    localStorage.setItem('latestWorkoutId', latestWorkoutId.toString());
 
     var workout = {};
 
@@ -87,9 +93,9 @@ document.getElementById('workoutForm').addEventListener('submit', function (even
 
     workout.weekDays = weekDays;
 
-    workoutId++;
 
-    workout.id = workoutId;
+
+    workout.id = latestWorkoutId;
 
 
     workouts.push(workout);
@@ -100,14 +106,16 @@ document.getElementById('workoutForm').addEventListener('submit', function (even
 
     this.style.display = 'none';
 
-    
+
 
     // console.log("Before redirection");
     // window.location.href = "/Users/mitchrobards/FitnessApp/Pages/week.cshtml";
     // console.log("After redirection");
 
     addWorkout();
-    
+
+    document.getElementById('createWorkout').textContent = 'Create Workout';
+
 });
 
 
@@ -264,7 +272,7 @@ function handleWorkoutsData() {
     var workoutsData = localStorage.getItem('workoutsData');
     workouts = JSON.parse(workoutsData);
     document.querySelector('.workoutView').innerHTML = '';
-    
+
     workouts.forEach(function (workout) {
         workoutView(workout);
     });
@@ -279,18 +287,18 @@ function addWorkout() {
     }
 }
 
-document.getElementById('viewWorkoutsButton').addEventListener('click', function() {
+document.getElementById('viewWorkoutsButton').addEventListener('click', function () {
     document.querySelector('.workoutViewPage').classList.toggle('opened');
 });
 
-document.getElementById('collapseButton').addEventListener('click', function() {
+document.getElementById('collapseButton').addEventListener('click', function () {
     document.querySelector('.workoutViewPage').classList.toggle('opened');
 });
 
 function workoutView(workout) {
     const workoutViewDiv = document.createElement('div');
     workoutViewDiv.className = "workoutViewDiv";
-
+    workoutViewDiv.dataset.id = workout.id;
 
 
     const workoutTitle = document.createElement('h1');
@@ -321,15 +329,18 @@ function workoutView(workout) {
 
     console.log("Edit Workout Button:", editWorkoutButton);
 
-    editWorkoutButton.onclick = function() {
+    editWorkoutButton.onclick = function () {
         console.log('editButtonClicked');
         editDiv = document.querySelector('.editDiv');
+        editWorkout(workout.id);
 
-        if(editDiv.style.display === 'none') {
+        if (editDiv.style.display === 'none') {
             editDiv.style.display = 'flex';
         } else {
             editDiv.style.display = 'none';
         }
+
+
     };
 
 
@@ -360,12 +371,94 @@ function workoutView(workout) {
     document.querySelector('.workoutView').appendChild(workoutViewDiv);
 }
 
-document.querySelector('.closeEditDiv').addEventListener('click', function() {
+document.querySelector('.closeEditDiv').addEventListener('click', function () {
     console.log('closeEditDiv was clicked');
     editDiv = document.querySelector('.editDiv');
 
     editDiv.style.display = 'none';
 });
+
+function editWorkout(workoutId) {
+    var workoutsData = localStorage.getItem('workoutsData');
+    var workouts = JSON.parse(workoutsData);
+
+    // Find the workout to edit
+    var workout = workouts.find(w => w.id === workoutId);
+
+    if (workout) {
+
+        // Clear any existing content in the editWorkout div
+        document.querySelector('.editWorkout').innerHTML = '';
+
+        const editForm = document.createElement('form');
+
+        const workoutNameInput = document.createElement('input');
+        workoutNameInput.className = workoutNameInput;
+        workoutNameInput.type = 'text';
+        workoutNameInput.placeholder = workout.name;
+        editForm.appendChild(workoutNameInput);
+
+        workout.exercises.forEach(exercise => {
+            const exerciseDiv = document.createElement('div');
+            exerciseDiv.className = "exerciseDiv";
+
+
+
+            const exerciseName = document.createElement('input');
+            exerciseName.className = "exerciseName"
+            exerciseName.placeholder = exercise.name;
+            exerciseDiv.appendChild(exerciseName);
+            let setNum = 1;
+            exercise.sets.forEach(set => {
+                const setContainer = document.createElement('div');
+                setContainer.className = "setContainer";
+                let weight = '';
+                let reps = ''
+                let time = '';
+                if (weight !== undefined) {
+                    weight = set.weight;
+                }
+
+                if (reps !== undefined) {
+                    reps = set.reps;
+                }
+
+                if (weight !== undefined) {
+                    time = set.time;
+                }
+
+                setContainer.innerHTML = `
+            <div class="setGroup">
+                <div class="set">
+                    <label for="set">Set ${setNum}:</label>
+                </div>
+                <div class="setItem">
+                <input type="number" class="weight" name="weight" placeholder="${weight}">
+                <p>lbs</p>
+            </div>
+            <div class="setItem">
+                <input type="number" class="reps" name="reps" min="1" placeholder = ${reps}>
+                <p>Reps</p>
+            </div>
+            <div class="setItem">
+                <input type="number" class="time" name="time"placeholder = ${time}>
+                <p>Time</p>
+            </div>
+                <button type="button" class="deleteSet"><i class="fa-solid fa-square-minus"></i></button>
+            </div>
+        `;
+        exerciseDiv.appendChild(setContainer);
+        editForm.appendChild(exerciseDiv);
+
+            })
+        });
+
+
+
+        const editWorkoutDiv = document.querySelector('.editWorkout');
+        editWorkoutDiv.appendChild(editForm);
+    }
+}
 
 
 window.addEventListener('DOMContentLoaded', handleWorkoutsData);

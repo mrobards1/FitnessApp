@@ -15,11 +15,11 @@
 }
 
 .container {
-    width: 100%;
+    min-width: 100%;
     min-height: 100vh;
     background-color: var(--offwhite);
     color: white;
-    display: flex;
+    
     padding-left: 70px;
     display: grid;
     grid-template-columns: repeat(7, 1fr);
