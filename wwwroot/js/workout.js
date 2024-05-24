@@ -399,33 +399,27 @@ function editWorkout(workoutId) {
         editForm.appendChild(workoutNameInput);
 
         workout.exercises.forEach(exercise => {
-            const exerciseDiv = document.createElement('div');
-            exerciseDiv.className = "exerciseDiv";
+            const exerciseGroup = document.createElement('div');
+            exerciseGroup.className = "exerciseGroup";
 
 
+            const exerciseName = document.createElement('div');
+            exerciseName.className = 'exerciseName';
 
-            const exerciseName = document.createElement('input');
-            exerciseName.className = "exerciseName"
-            exerciseName.placeholder = exercise.name;
-            exerciseDiv.appendChild(exerciseName);
+            const exerciseInput = document.createElement('input');
+            exerciseInput.className = "exercise"
+            exerciseInput.placeholder = exercise.name;
+            exerciseName.appendChild(exerciseInput);
+
+            exerciseGroup.appendChild(exerciseName);
+
             let setNum = 1;
             exercise.sets.forEach(set => {
                 const setContainer = document.createElement('div');
                 setContainer.className = "setContainer";
-                let weight = '';
-                let reps = ''
-                let time = '';
-                if (weight !== undefined) {
-                    weight = set.weight;
-                }
-
-                if (reps !== undefined) {
-                    reps = set.reps;
-                }
-
-                if (weight !== undefined) {
-                    time = set.time;
-                }
+                let weight = set.weight !== undefined ? set.weight : '';
+                let reps = set.reps !== undefined ? set.reps : '';
+                let time = set.time !== undefined ? set.time : '';
 
                 setContainer.innerHTML = `
             <div class="setGroup">
@@ -447,10 +441,30 @@ function editWorkout(workoutId) {
                 <button type="button" class="deleteSet"><i class="fa-solid fa-square-minus"></i></button>
             </div>
         `;
-        exerciseDiv.appendChild(setContainer);
-        editForm.appendChild(exerciseDiv);
+                exerciseGroup.appendChild(setContainer);
+
+               
+
 
             })
+
+            restDiv = document.createElement('div');
+            restDiv.className = 'rest';
+            restLabel = document.createElement('label');
+            restLabel.textContent = 'Rest Between Sets';
+            restDiv.appendChild(restLabel);
+            restInput = document.createElement('input');
+            restInput.className = 'rest';
+            restDiv.appendChild(restInput);
+            exerciseGroup.appendChild(restDiv);
+
+            deleteExercise = document.createElement('button');
+            deleteExercise.className = 'deleteExercise';
+            deleteExercise.type = 'button';
+            deleteExercise.innerHTML = '<i class="fa-solid fa-minus"></i> Delete Exercise';
+            exerciseGroup.appendChild(deleteExercise);
+
+            editForm.appendChild(exerciseGroup);
         });
 
 
