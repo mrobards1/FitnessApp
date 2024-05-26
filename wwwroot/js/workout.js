@@ -220,16 +220,16 @@ document.getElementById('showSchedule').addEventListener('click', function () {
     }
 });
 
-document.getElementById('closeSchedule').addEventListener('click', function () {
-    var blurredBackground = document.querySelector('.blurredBackground');
-    blurredBackground.style.display = "none";
+document.querySelectorAll('.closeSchedule').forEach(function (button) {
+    button.addEventListener('click', function () {
+        var blurredBackground = document.querySelector('.blurredBackground');
+        blurredBackground.style.display = "none";
+
+        var scheduleSelect = document.querySelector('.exerciseSchedule');
+        scheduleSelect.style.display = "none";
+    });
 });
 
-
-document.getElementById('closeSchedule').addEventListener('click', function () {
-    var scheduleSelect = document.querySelector('.exerciseSchedule');
-    scheduleSelect.style.display = "none";
-})
 
 document.querySelector('.exerciseSchedule').addEventListener('click', function (event) {
     var option = event.target;
@@ -468,10 +468,39 @@ function editWorkout(workoutId) {
         });
 
 
-
         const editWorkoutDiv = document.querySelector('.editWorkout');
         editWorkoutDiv.appendChild(editForm);
+
+    
+        const scheduleButton = document.createElement('button');
+        scheduleButton.id = 'showScheduleEdit';
+        scheduleButton.type = 'button';
+        scheduleButton.innerHTML = '<i class="fa-solid fa-calendar scheduleIcon"></i> Show Schedule';
+        editForm.appendChild(scheduleButton);
+
+        scheduleButton.addEventListener('click', function () {
+            var scheduleSelect2 = document.querySelector('.exerciseScheduleEdit');
+            console.log(scheduleSelect2);
+            if (scheduleSelect2) {
+                if (scheduleSelect2.style.display === "none") {
+                    scheduleSelect2.style.display = "block";
+
+        
+                } else {
+                    scheduleSelect2.style.display = "none";
+                }
+            }
+        });
+        
     }
+
+    document.querySelector('.closeSchedule2').addEventListener('click', function() {
+        schedule = document.querySelector('.exerciseScheduleEdit');
+
+        schedule.style.display = 'none';
+    });
+
+
 }
 
 

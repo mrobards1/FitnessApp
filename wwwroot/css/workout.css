@@ -168,7 +168,7 @@ form {
 }
 
 
-.container .exerciseSchedule {
+.container .exerciseSchedule, .exerciseScheduleEdit {
     position: absolute;
     width: 350px;
     min-height: 300px;
@@ -187,6 +187,9 @@ form {
     color: var(--reddish)
 }
 
+.exerciseScheduleEdit {
+    z-index: 500;
+}
 
 
 .scheduleTitle {
@@ -444,7 +447,7 @@ input[type=number]::-webkit-outer-spin-button {
 
 }
 
-.addSet, #add-exercise, #closeSchedule, #showSchedule, #save, .deleteExercise{
+.addSet, #add-exercise, .closeSchedule, #showSchedule, #save, .deleteExercise{
     padding: 4px;
     border: none;
     font-size: 12px;
@@ -481,19 +484,19 @@ input[type=number]::-webkit-outer-spin-button {
 }
 
 
-#add-exercise, #closeSchedule, #showSchedule, #save{
+#add-exercise, .closeSchedule, #showSchedule, #save{
     background-color: var(--reddish);
     color: var(--offwhite);
 }
 
-#closeSchedule {
+.closeSchedule {
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
     margin-bottom: 50px;
 }
 
-.blurredBackground {
+.blurredBackground, .blurredBackgroundEdit {
     position: fixed;
     top: 0;
     left: 0;
