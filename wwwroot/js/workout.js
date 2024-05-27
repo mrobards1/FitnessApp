@@ -125,7 +125,7 @@ document.getElementById('workoutForm').addEventListener('submit', function (even
 
 
 
-document.getElementById('add-exercise').addEventListener('click', function () {
+document.getElementById('addExercise').addEventListener('click', function () {
     const exercisesContainer = document.getElementById('exercises-container');
     const newExercise = document.createElement('div');
     newExercise.classList.add('exercise');
@@ -385,6 +385,7 @@ function editWorkout(workoutId) {
     // Find the workout to edit
     var workout = workouts.find(w => w.id === workoutId);
 
+
     if (workout) {
 
         // Clear any existing content in the editWorkout div
@@ -392,11 +393,19 @@ function editWorkout(workoutId) {
 
         const editForm = document.createElement('form');
 
+        const exercisesContainerEdit = document.createElement('div');
+        exercisesContainerEdit.id = 'exercisesContainerEdit';
+
+        const workoutName = document.createElement('div');
+        workoutName.className = 'workoutName';
         const workoutNameInput = document.createElement('input');
-        workoutNameInput.className = workoutNameInput;
+        workoutNameInput.className = workoutName;
         workoutNameInput.type = 'text';
         workoutNameInput.placeholder = workout.name;
-        editForm.appendChild(workoutNameInput);
+        workoutName.appendChild(workoutNameInput);
+        exercisesContainerEdit.appendChild(workoutName);
+
+        editForm.appendChild(exercisesContainerEdit);
 
         workout.exercises.forEach(exercise => {
             const exerciseGroup = document.createElement('div');
@@ -443,8 +452,6 @@ function editWorkout(workoutId) {
         `;
                 exerciseGroup.appendChild(setContainer);
 
-               
-
 
             })
 
@@ -465,18 +472,72 @@ function editWorkout(workoutId) {
             exerciseGroup.appendChild(deleteExercise);
 
             editForm.appendChild(exerciseGroup);
+
         });
 
+        // Clears all checkboxes before setting new ones
+        const allCheckboxes = document.querySelectorAll('.exerciseScheduleEdit input[type="checkbox"]');
+        allCheckboxes.forEach(checkbox => {
+            checkbox.checked = false;
+            checkbox.previousElementSibling.classList.remove('fa-solid');
+            checkbox.previousElementSibling.classList.add('fa-regular');
+        });
+
+
+       
 
         const editWorkoutDiv = document.querySelector('.editWorkout');
         editWorkoutDiv.appendChild(editForm);
 
+        const addButton = document.createElement('div');
+        addButton.className = 'addButton';
+        const addExercise = document.createElement('button');
+        addExercise.id = 'addExerciseEdit';
+        addExercise.innerHTML = 'Add Exercise';
+        addButton.appendChild(addExercise);
+        editForm.appendChild(addButton);
+
+        document.getElementById('addExerciseEdit').addEventListener('click', function () {
+            const exercisesContainerEdit = document.getElementById('exercisesContainerEdit');
+            const newExercise = document.createElement('div');
+            newExercise.classList.add('exercise');
+            newExercise.innerHTML = `
+                <div class="exerciseGroup">
+                    <div class="exerciseName">
+                        <input type="text" class="exercise" name="exercise" placeholder="Exercise Name" required>
+                    </div>
+        
+                    <button type="button" class="addSet"><i class="fa-solid fa-plus"></i> Add Set</button>
+                    
+                    <div class="set-container"></div>
+                    <div class="rest">
+                        <label for="rest">Rest Between Sets</label>
+                        <input type="number" class="rest" name="rest">
+                    </div>
+                    <button type="button" class="deleteExercise"><i class="fa-solid fa-minus"></i> Delete Exercise</button>
+                </div>
+            `;
+            exercisesContainerEdit.appendChild(newExercise);
     
+            
+        
+        
+        });
+
+        const scheduleEdit = document.createElement('div');
+        scheduleEdit.className = 'schedule';
+
         const scheduleButton = document.createElement('button');
         scheduleButton.id = 'showScheduleEdit';
         scheduleButton.type = 'button';
-        scheduleButton.innerHTML = '<i class="fa-solid fa-calendar scheduleIcon"></i> Show Schedule';
-        editForm.appendChild(scheduleButton);
+        scheduleButton.innerHTML = '<i class="fa-solid fa-calendar scheduleIcon"></i> Schedule Options';
+        scheduleEdit.appendChild(scheduleButton);
+
+        const selectedOptionsEdit = document.createElement('div');
+        selectedOptionsEdit.id = 'selectedOptionsEdit';
+        scheduleEdit.appendChild(selectedOptionsEdit);
+        editForm.appendChild(scheduleEdit);
+
 
         scheduleButton.addEventListener('click', function () {
             var scheduleSelect2 = document.querySelector('.exerciseScheduleEdit');
@@ -485,16 +546,46 @@ function editWorkout(workoutId) {
                 if (scheduleSelect2.style.display === "none") {
                     scheduleSelect2.style.display = "block";
 
-        
+
                 } else {
                     scheduleSelect2.style.display = "none";
                 }
             }
         });
-        
+
     }
 
-    document.querySelector('.closeSchedule2').addEventListener('click', function() {
+   
+
+    workout.weekDays.forEach(day => {
+        const checkbox = document.querySelector(`.exerciseScheduleEdit input[type="checkbox"][value="${day}"]`);
+        if (checkbox) {
+            checkbox.checked = true;
+            checkbox.previousElementSibling.classList.remove('fa-regular');
+            checkbox.previousElementSibling.classList.add('fa-solid');
+        }
+        updateSelectedOptions();
+       
+    });
+
+    function updateSelectedOptions() {
+        var selectedOptionsDiv = document.getElementById('selectedOptionsEdit');
+        var checkboxes = document.querySelectorAll('.exerciseScheduleEdit input[type="checkbox"]');
+        var selectedOption = '';
+
+        checkboxes.forEach(function (checkbox) {
+            if (checkbox.checked) {
+                var parentText = checkbox.parentElement.textContent.trim();
+                var dayAbbr = parentText.substring(0, 3);
+                selectedOption += dayAbbr + " ";
+            }
+        });
+
+        selectedOptionsDiv.textContent = selectedOption;
+    }
+
+
+    document.querySelector('.closeSchedule2').addEventListener('click', function () {
         schedule = document.querySelector('.exerciseScheduleEdit');
 
         schedule.style.display = 'none';

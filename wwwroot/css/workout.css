@@ -210,13 +210,13 @@ form {
     
 }
 
-.schedule #showSchedule,
+.schedule #showSchedule, #showScheduleEdit
 .schedule #selectedOptions {
     display: inline-block;
 
 }
 
-#selectedOptions {
+#selectedOptions, #selectedOptionsEdit {
     padding: 5px;
     color: var(--offwhite);
     height: 25px;
@@ -253,7 +253,7 @@ form {
 }
 
 
-.add_button,
+.addButton,
 .submit {
     display: flex;
     justify-content: center;
@@ -447,7 +447,7 @@ input[type=number]::-webkit-outer-spin-button {
 
 }
 
-.addSet, #add-exercise, .closeSchedule, #showSchedule, #save, .deleteExercise{
+.addSet, #add-exercise, .closeSchedule, #showSchedule, #showScheduleEdit, #save, .deleteExercise{
     padding: 4px;
     border: none;
     font-size: 12px;
@@ -464,7 +464,7 @@ input[type=number]::-webkit-outer-spin-button {
     margin-bottom: 5px;
 }
 
-#showSchedule{
+#showSchedule, #showScheduleEdit{
     height: 25px;
     font-size: 15px;
     padding-left: 5px;
@@ -484,7 +484,7 @@ input[type=number]::-webkit-outer-spin-button {
 }
 
 
-#add-exercise, .closeSchedule, #showSchedule, #save{
+#add-exercise, .closeSchedule, #showSchedule, #showScheduleEdit #save{
     background-color: var(--reddish);
     color: var(--offwhite);
 }
