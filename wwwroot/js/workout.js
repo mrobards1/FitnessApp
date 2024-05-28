@@ -401,7 +401,7 @@ function editWorkout(workoutId) {
         const workoutNameInput = document.createElement('input');
         workoutNameInput.className = workoutName;
         workoutNameInput.type = 'text';
-        workoutNameInput.placeholder = workout.name;
+        workoutNameInput.value = workout.name;
         workoutName.appendChild(workoutNameInput);
         exercisesContainerEdit.appendChild(workoutName);
 
@@ -417,7 +417,7 @@ function editWorkout(workoutId) {
 
             const exerciseInput = document.createElement('input');
             exerciseInput.className = "exercise"
-            exerciseInput.placeholder = exercise.name;
+            exerciseInput.value = exercise.name;
             exerciseName.appendChild(exerciseInput);
 
             exerciseGroup.appendChild(exerciseName);
@@ -436,15 +436,15 @@ function editWorkout(workoutId) {
                     <label for="set">Set ${setNum}:</label>
                 </div>
                 <div class="setItem">
-                <input type="number" class="weight" name="weight" placeholder="${weight}">
+                <input type="number" class="weight" name="weight" value="${weight}">
                 <p>lbs</p>
             </div>
             <div class="setItem">
-                <input type="number" class="reps" name="reps" min="1" placeholder = ${reps}>
+                <input type="number" class="reps" name="reps" min="1" value = ${reps}>
                 <p>Reps</p>
             </div>
             <div class="setItem">
-                <input type="number" class="time" name="time"placeholder = ${time}>
+                <input type="number" class="time" name="time" value = ${time}>
                 <p>Time</p>
             </div>
                 <button type="button" class="deleteSet"><i class="fa-solid fa-square-minus"></i></button>
@@ -492,7 +492,9 @@ function editWorkout(workoutId) {
         const addButton = document.createElement('div');
         addButton.className = 'addButton';
         const addExercise = document.createElement('button');
+        addExercise.type = 'button';
         addExercise.id = 'addExerciseEdit';
+        addExercise.className = 'addExerciseStyle';
         addExercise.innerHTML = 'Add Exercise';
         addButton.appendChild(addExercise);
         editForm.appendChild(addButton);
@@ -517,7 +519,7 @@ function editWorkout(workoutId) {
                     <button type="button" class="deleteExercise"><i class="fa-solid fa-minus"></i> Delete Exercise</button>
                 </div>
             `;
-            exercisesContainerEdit.appendChild(newExercise);
+            exercisesContainerEdit.append(newExercise);
     
             
         
@@ -553,7 +555,16 @@ function editWorkout(workoutId) {
             }
         });
 
+        saveButton = document.createElement('button');
+        saveButton.type = 'submit';
+        saveButton.id = 'saveButtonEdit';
+        saveButton.className = 'saveStyle';
+        saveButton.innerHTML = 'Save Workout';
+        editForm.appendChild(saveButton);
+
     }
+
+   
 
    
 

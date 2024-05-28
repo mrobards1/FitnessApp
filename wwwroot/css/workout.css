@@ -447,7 +447,7 @@ input[type=number]::-webkit-outer-spin-button {
 
 }
 
-.addSet, #add-exercise, .closeSchedule, #showSchedule, #showScheduleEdit, #save, .deleteExercise{
+.addSet, .addExerciseStyle, .closeSchedule, #showSchedule, #showScheduleEdit, .saveStyle, .deleteExercise{
     padding: 4px;
     border: none;
     font-size: 12px;
@@ -471,20 +471,20 @@ input[type=number]::-webkit-outer-spin-button {
     padding-right: 5px;
 }
 
-#add-exercise {
+.addExerciseStyle {
     margin-bottom: 10px;
     font-size: 13px;
 }
 
 
 
-#save {
+.saveStyle {
     margin-top: 20px;
     font-size: 20px;
 }
 
 
-#add-exercise, .closeSchedule, #showSchedule, #showScheduleEdit #save{
+.addExerciseStyle, .closeSchedule, #showSchedule, #showScheduleEdit .saveStyle{
     background-color: var(--reddish);
     color: var(--offwhite);
 }
@@ -518,6 +518,7 @@ input[type=number]::-webkit-outer-spin-button {
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    overflow: scroll;
 }
 
 .editWorkout {
