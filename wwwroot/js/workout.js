@@ -610,4 +610,3 @@ window.addEventListener('DOMContentLoaded', handleWorkoutsData);
 
 
 
-
