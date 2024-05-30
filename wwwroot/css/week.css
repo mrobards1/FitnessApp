@@ -19,11 +19,11 @@
     min-height: 100vh;
     background-color: var(--offwhite);
     color: white;
-    
-    padding-left: 70px;
     display: grid;
     grid-template-columns: repeat(7, 1fr);
     grid-gap: 10px;
+    overflow-x: auto; 
+    overflow-y: hidden;
 }
 
 
@@ -39,6 +39,14 @@
     border-radius: 5px;
     overflow: scroll;
     
+}
+
+.weekday:first-child {
+    margin-left: 150px;
+}
+
+.weekday:last-child {
+    margin-right: 50px;
 }
 
 .weekday::-webkit-scrollbar {

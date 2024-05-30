@@ -12,8 +12,13 @@
 </head>
 
  <nav>
-        <ul class="navlist">
-            <li>
+
+    @{
+    string currentPage = ViewContext.RouteData.Values["page"]?.ToString();
+}
+
+<ul class="navlist">
+    <li class="@(currentPage == "/index" ? "active" : "")">
         <a asp-page="/index">
             <div class="iconContainer">
                 <i class="fa-solid fa-dumbbell"></i>
@@ -21,7 +26,7 @@
             </div>
         </a>
     </li>
-            <li>
+    <li class="@(currentPage == "/week" ? "active" : "")">
         <a asp-page="/week">
             <div class="iconContainer">
                 <i class="fa-solid fa-calendar"></i>
@@ -29,7 +34,7 @@
             </div>
         </a>
     </li>
-    <li>
+    <li class="@(currentPage == "/trends" ? "active" : "")">
         <a asp-page="/trends">
             <div class="iconContainer">
                 <i class="fa-solid fa-arrow-trend-up"></i>
@@ -37,8 +42,7 @@
             </div>
         </a>
     </li>
-            
-        </ul>
+</ul>
 
 
     </nav>

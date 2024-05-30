@@ -46,3 +46,23 @@
 .iconTitle {
   font-weight: bold;
 }
+
+.navlist li .iconContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center; 
+  width: 90%;
+  padding: 10px;
+  margin: auto;
+}
+
+
+.navlist li.active .iconContainer {
+  background-color: var(--reddish);
+  
+  border-radius: 10px;
+}
+
+.navlist li.active .iconContainer i {
+
+}
