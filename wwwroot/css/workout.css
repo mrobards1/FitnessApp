@@ -57,14 +57,22 @@
     
 }
 
-form {
+#workoutForm {
     width: 500px;
-    min-height: 100px;
+    height: auto;
     padding: 20px;
     border: 2px solid var(--reddish);
     background-color: var(--offwhite);
     border-radius: 10px;
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.6);
+    opacity: 0;
+    display: none;
+    transition: opacity 0.8s ease;
+}
+
+#workoutForm.show {
+    display: block;
+    opacity: 1;
 }
 
 .workoutName {

@@ -5,20 +5,24 @@ if (!localStorage.getItem('latestWorkoutId')) {
     localStorage.setItem('latestWorkoutId', '0');
 }
 
-
 document.getElementById('createWorkout').addEventListener('click', function () {
     var showForm = document.getElementById('workoutForm');
-    if (showForm.style.display == 'none') {
+    if (showForm.classList.contains('show')) {
+        showForm.classList.remove('show');
+        showForm.style.display = 'none';
+        this.textContent = "Create Workout";
+    } else {
         showForm.style.display = 'block';
+        setTimeout(() => {
+            showForm.classList.add('show');
+        }, 10); // Small delay to allow the display property to take effect
         this.textContent = "Hide Form";
         this.style.position = 'static';
         this.style.top = '';
         this.style.transform = 'none';
-    } else {
-        showForm.style.display = 'none';
-        this.textContent = "Create Workout";
     }
 });
+
 
 document.getElementById('workoutForm').addEventListener('submit', function (event) {
     event.preventDefault();
@@ -484,7 +488,7 @@ function editWorkout(workoutId) {
         });
 
 
-       
+
 
         const editWorkoutDiv = document.querySelector('.editWorkout');
         editWorkoutDiv.appendChild(editForm);
@@ -520,10 +524,10 @@ function editWorkout(workoutId) {
                 </div>
             `;
             exercisesContainerEdit.append(newExercise);
-    
-            
-        
-        
+
+
+
+
         });
 
         const scheduleEdit = document.createElement('div');
@@ -564,9 +568,9 @@ function editWorkout(workoutId) {
 
     }
 
-   
 
-   
+
+
 
     workout.weekDays.forEach(day => {
         const checkbox = document.querySelector(`.exerciseScheduleEdit input[type="checkbox"][value="${day}"]`);
@@ -576,7 +580,7 @@ function editWorkout(workoutId) {
             checkbox.previousElementSibling.classList.add('fa-solid');
         }
         updateSelectedOptions();
-       
+
     });
 
     function updateSelectedOptions() {
