@@ -24,6 +24,7 @@ document.getElementById('createWorkout').addEventListener('click', function () {
 });
 
 
+
 document.getElementById('workoutForm').addEventListener('submit', function (event) {
     event.preventDefault();
 
@@ -213,24 +214,31 @@ document.getElementById('addExercise').addEventListener('click', function () {
 document.getElementById('showSchedule').addEventListener('click', function () {
     var scheduleSelect = document.querySelector('.exerciseSchedule');
     var blurredBackground = document.querySelector('.blurredBackground');
-    if (scheduleSelect) {
-        if (scheduleSelect.style.display === "none") {
-            scheduleSelect.style.display = "block";
-            blurredBackground.style.display = "block";
-
-        } else {
-            scheduleSelect.style.display = "none";
-        }
+    if (scheduleSelect.classList.contains('show')) {
+        scheduleSelect.classList.remove('show');
+        blurredBackground.style.display = "none";
+        scheduleSelect.style.display = 'none';
+    } else {
+        scheduleSelect.style.display = 'block';
+        blurredBackground.style.display = "block";
+        setTimeout(() => {
+            scheduleSelect.classList.add('show');
+           
+        }, 10); // Small delay to allow the display property to take effect
     }
 });
+
 
 document.querySelectorAll('.closeSchedule').forEach(function (button) {
     button.addEventListener('click', function () {
         var blurredBackground = document.querySelector('.blurredBackground');
         blurredBackground.style.display = "none";
-
+        
         var scheduleSelect = document.querySelector('.exerciseSchedule');
-        scheduleSelect.style.display = "none";
+        scheduleSelect.classList.remove('show');
+        setTimeout(() => {
+            scheduleSelect.style.display = 'none';
+        }, 300); // Matches the duration of the CSS transition
     });
 });
 

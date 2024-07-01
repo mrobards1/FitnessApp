@@ -192,7 +192,19 @@
     padding: 10px;
     border-radius: 10px;
     padding-bottom: 30px;
-    color: var(--reddish)
+    color: var(--reddish);
+    
+}
+
+.container .exerciseSchedule {
+    display: none;
+    opacity: 0;
+    transition: opacity 0.8s ease;
+}
+
+.exerciseSchedule.show {
+    display: block;
+    opacity: 1;
 }
 
 .exerciseScheduleEdit {
