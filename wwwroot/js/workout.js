@@ -1,5 +1,6 @@
 //workout.js
 var workouts = [];
+var workouts2 = [];
 
 if (!localStorage.getItem('latestWorkoutId')) {
     localStorage.setItem('latestWorkoutId', '0');
@@ -403,7 +404,7 @@ function editWorkout(workoutId) {
         // Clear any existing content in the editWorkout div
         document.querySelector('.editWorkout').innerHTML = '';
 
-        const editForm = document.createElement('form');
+        const editDiv = document.createElement('div');
 
         const exercisesContainerEdit = document.createElement('div');
         exercisesContainerEdit.id = 'exercisesContainerEdit';
@@ -417,7 +418,7 @@ function editWorkout(workoutId) {
         workoutName.appendChild(workoutNameInput);
         exercisesContainerEdit.appendChild(workoutName);
 
-        editForm.appendChild(exercisesContainerEdit);
+        editDiv.appendChild(exercisesContainerEdit);
 
         workout.exercises.forEach(exercise => {
             const exerciseGroup = document.createElement('div');
@@ -483,7 +484,7 @@ function editWorkout(workoutId) {
             deleteExercise.innerHTML = '<i class="fa-solid fa-minus"></i> Delete Exercise';
             exerciseGroup.appendChild(deleteExercise);
 
-            editForm.appendChild(exerciseGroup);
+            editDiv.appendChild(exerciseGroup);
 
         });
 
@@ -499,7 +500,7 @@ function editWorkout(workoutId) {
 
 
         const editWorkoutDiv = document.querySelector('.editWorkout');
-        editWorkoutDiv.appendChild(editForm);
+        editWorkoutDiv.appendChild(editDiv);
 
         const addButton = document.createElement('div');
         addButton.className = 'addButton';
@@ -509,7 +510,7 @@ function editWorkout(workoutId) {
         addExercise.className = 'addExerciseStyle';
         addExercise.innerHTML = 'Add Exercise';
         addButton.appendChild(addExercise);
-        editForm.appendChild(addButton);
+        editDiv.appendChild(addButton);
 
         document.getElementById('addExerciseEdit').addEventListener('click', function () {
             const exercisesContainerEdit = document.getElementById('exercisesContainerEdit');
@@ -550,7 +551,7 @@ function editWorkout(workoutId) {
         const selectedOptionsEdit = document.createElement('div');
         selectedOptionsEdit.id = 'selectedOptionsEdit';
         scheduleEdit.appendChild(selectedOptionsEdit);
-        editForm.appendChild(scheduleEdit);
+        editDiv.appendChild(scheduleEdit);
 
 
         scheduleButton.addEventListener('click', function () {
@@ -568,12 +569,27 @@ function editWorkout(workoutId) {
         });
 
         saveButton = document.createElement('button');
-        saveButton.type = 'submit';
+        saveButton.type = 'button';
         saveButton.id = 'saveButtonEdit';
         saveButton.className = 'saveStyle';
         saveButton.innerHTML = 'Save Workout';
-        editForm.appendChild(saveButton);
+        editDiv.appendChild(saveButton);
 
+
+        saveButton.addEventListener('click', function(event) {
+            event.preventDefault(); // Prevents the default form submission behavior
+            console.log('Save button clicked');
+            
+            var workoutsEdit  = {};
+            workoutsEdit.name = workoutNameInput.value;
+
+            workouts2.push(workoutsEdit);
+
+            console.log('workouts2 info: ', workouts2);
+            
+
+            alert('Workout updated successfully!');
+        });
     }
 
 
@@ -616,6 +632,20 @@ function editWorkout(workoutId) {
 
 
 }
+
+// document.addEventListener('DOMContentLoaded', function () {
+//     var workoutForm = document.getElementById('workoutForm');
+    
+//     if (workoutForm) {
+//         workoutForm.addEventListener('submit', function (event) {
+//             event.preventDefault();
+//             console.log('Form submitted');
+//         });
+//     } else {
+//         console.log('workoutForm not found');
+//     }
+// });
+
 
 
 window.addEventListener('DOMContentLoaded', handleWorkoutsData);
