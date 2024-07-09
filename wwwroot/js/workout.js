@@ -583,16 +583,39 @@ function editWorkout(workoutId) {
             var workoutsEdit  = {};
             workoutsEdit.name = workoutNameInput.value;
 
+            workoutsEdit.exercises = [];
+            document.querySelectorAll('.exerciseGroup').forEach(exerciseGroup => {
+                var exercise = {};
+
+                exercise.name = exerciseGroup.querySelector('.exercise').value;
+
+                exercise.sets = [];
+                exerciseGroup.querySelectorAll('.setContainer').forEach(setContainer => {
+                    var set = {};
+
+                    set.weight = setContainer.querySelector('.weight').value;
+                    set.reps = setContainer.querySelector('.reps').value;
+                    set.time = setContainer.querySelector('.time').value;
+
+                    exercise.sets.push(set);
+
+                });
+
+                exercise.rest = exerciseGroup.querySelector('.rest input').value;
+
+
+                workoutsEdit.exercises.push(exercise);
+            });
+            
+            
+
             workouts2.push(workoutsEdit);
 
             console.log('workouts2 info: ', workouts2);
             
 
-            alert('Workout updated successfully!');
         });
     }
-
-
 
 
 
@@ -632,19 +655,6 @@ function editWorkout(workoutId) {
 
 
 }
-
-// document.addEventListener('DOMContentLoaded', function () {
-//     var workoutForm = document.getElementById('workoutForm');
-    
-//     if (workoutForm) {
-//         workoutForm.addEventListener('submit', function (event) {
-//             event.preventDefault();
-//             console.log('Form submitted');
-//         });
-//     } else {
-//         console.log('workoutForm not found');
-//     }
-// });
 
 
 
