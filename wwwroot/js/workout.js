@@ -2,6 +2,8 @@
 var workouts = [];
 var workouts2 = [];
 
+
+
 if (!localStorage.getItem('latestWorkoutId')) {
     localStorage.setItem('latestWorkoutId', '0');
 }
@@ -224,7 +226,7 @@ document.getElementById('showSchedule').addEventListener('click', function () {
         blurredBackground.style.display = "block";
         setTimeout(() => {
             scheduleSelect.classList.add('show');
-           
+
         }, 10); // Small delay to allow the display property to take effect
     }
 });
@@ -234,7 +236,7 @@ document.querySelectorAll('.closeSchedule').forEach(function (button) {
     button.addEventListener('click', function () {
         var blurredBackground = document.querySelector('.blurredBackground');
         blurredBackground.style.display = "none";
-        
+
         var scheduleSelect = document.querySelector('.exerciseSchedule');
         scheduleSelect.classList.remove('show');
         setTimeout(() => {
@@ -576,46 +578,74 @@ function editWorkout(workoutId) {
         editDiv.appendChild(saveButton);
 
 
-        saveButton.addEventListener('click', function(event) {
+        saveButton.addEventListener('click', function (event) {
             event.preventDefault(); // Prevents the default form submission behavior
             console.log('Save button clicked');
-            
-            var workoutsEdit  = {};
+
+            var workoutsEdit = {};
             workoutsEdit.name = workoutNameInput.value;
 
             workoutsEdit.exercises = [];
             document.querySelectorAll('.exerciseGroup').forEach(exerciseGroup => {
                 var exercise = {};
 
+
                 exercise.name = exerciseGroup.querySelector('.exercise').value;
 
                 exercise.sets = [];
                 exerciseGroup.querySelectorAll('.setContainer').forEach(setContainer => {
                     var set = {};
+                    const weightInput = setContainer.querySelector('.weight').value;
+                    if (weightInput) {
+                        set.weight = weightInput;
+                    }
+                    const repsInput = setContainer.querySelector('.reps').value;
+                    if (repsInput) {
+                        set.reps = repsInput;
+                    }
 
-                    set.weight = setContainer.querySelector('.weight').value;
-                    set.reps = setContainer.querySelector('.reps').value;
-                    set.time = setContainer.querySelector('.time').value;
-
+                    const timeInput = setContainer.querySelector('.time').value;
+                    if (timeInput) {
+                        set.time = timeInput
+                    }
                     exercise.sets.push(set);
 
                 });
+                const restInput = exerciseGroup.querySelector('.rest input').value;
+                if (restInput) {
+                    exercise.rest = restInput;
+                }
 
-                exercise.rest = exerciseGroup.querySelector('.rest input').value;
 
 
                 workoutsEdit.exercises.push(exercise);
+
+
             });
-            
-            
+
+            var weekDays = [];
+
+            var selectedDates = document.querySelectorAll('.exerciseScheduleEdit input[type="checkbox"]');
+           
+            selectedDates.forEach(function(checkbox) {
+                if(checkbox.checked) {
+                    console.log('selectedWeekDay: ', checkbox.value);
+                    weekDays.push(checkbox.value);
+                }
+            });
+        
+
+            workoutsEdit.weekDays = weekDays;
 
             workouts2.push(workoutsEdit);
+            console.log('workouts info:', workouts);
 
             console.log('workouts2 info: ', workouts2);
-            
+
 
         });
     }
+
 
 
 
