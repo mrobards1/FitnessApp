@@ -2,7 +2,7 @@
 var workouts = [];
 var workouts2 = [];
 
-
+var workouts = JSON.parse(localStorage.getItem('workoutsData')) || [];
 
 if (!localStorage.getItem('latestWorkoutId')) {
     localStorage.setItem('latestWorkoutId', '0');
@@ -583,6 +583,7 @@ function editWorkout(workoutId) {
             console.log('Save button clicked');
 
             var workoutsEdit = {};
+            workoutsEdit.id = workoutId;
             workoutsEdit.name = workoutNameInput.value;
 
             workoutsEdit.exercises = [];
@@ -637,10 +638,17 @@ function editWorkout(workoutId) {
 
             workoutsEdit.weekDays = weekDays;
 
-            workouts2.push(workoutsEdit);
-            console.log('workouts info:', workouts);
+            const existingWorkoutIndex = workouts.findIndex(workout => workout.id === workoutsEdit.id);
 
-            console.log('workouts2 info: ', workouts2);
+            console.log('existing workout index', existingWorkoutIndex);
+
+            if(existingWorkoutIndex !== -1) {
+                workouts[existingWorkoutIndex] = workoutsEdit;
+            }
+
+            localStorage.setItem('workoutsData', JSON.stringify(workouts));
+
+            console.log('Updated workouts info:', workouts);
 
 
         });
