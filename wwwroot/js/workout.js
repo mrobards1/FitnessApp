@@ -214,7 +214,6 @@ document.getElementById('addExercise').addEventListener('click', function () {
         }
     });
 });
-
 document.getElementById('showSchedule').addEventListener('click', function () {
     var scheduleSelect = document.querySelector('.exerciseSchedule');
     var blurredBackground = document.querySelector('.blurredBackground');
@@ -227,10 +226,25 @@ document.getElementById('showSchedule').addEventListener('click', function () {
         blurredBackground.style.display = "block";
         setTimeout(() => {
             scheduleSelect.classList.add('show');
-
+           
         }, 10); // Small delay to allow the display property to take effect
     }
 });
+
+
+document.querySelectorAll('.closeSchedule').forEach(function (button) {
+    button.addEventListener('click', function () {
+        var blurredBackground = document.querySelector('.blurredBackground');
+        blurredBackground.style.display = "none";
+        
+        var scheduleSelect = document.querySelector('.exerciseSchedule');
+        scheduleSelect.classList.remove('show');
+        setTimeout(() => {
+            scheduleSelect.style.display = 'none';
+        }, 300); // Matches the duration of the CSS transition
+    });
+});
+
 
 
 
@@ -269,6 +283,7 @@ function updateSelectedOptions() {
 
     selectedOptionsDiv.textContent = selectedOption;
 }
+
 
 
 function handleWorkoutsData() {
