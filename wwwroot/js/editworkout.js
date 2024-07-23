@@ -91,11 +91,27 @@ EditWorkoutModule.editWorkout = function (workoutId) {
             deleteExercise.className = 'deleteExercise';
             deleteExercise.type = 'button';
             deleteExercise.innerHTML = '<i class="fa-solid fa-minus"></i> Delete Exercise';
+
             exerciseGroup.appendChild(deleteExercise);
+
+            const deleteExerciseButton = exerciseGroup.querySelector('.deleteExercise');
+            console.log(deleteExerciseButton);
+            if (deleteExerciseButton) {
+                deleteExerciseButton.addEventListener('click', function () {
+                    console.log('deleteExerciseButton clicked');
+                    exerciseGroup.remove();
+                });
+
+            }
+
 
             editDiv.appendChild(exerciseGroup);
 
         });
+
+
+
+
 
         // Clears all checkboxes before setting new ones
         const allCheckboxes = document.querySelectorAll('.exerciseScheduleEdit input[type="checkbox"]');
@@ -143,7 +159,12 @@ EditWorkoutModule.editWorkout = function (workoutId) {
             `;
             exercisesContainerEdit.append(newExercise);
 
-
+            const deleteExerciseButton = newExercise.querySelector('.deleteExercise');
+            if (deleteExerciseButton) {
+                deleteExerciseButton.addEventListener('click', function () {
+                    newExercise.remove();
+                });
+            }
 
 
         });
@@ -181,7 +202,7 @@ EditWorkoutModule.editWorkout = function (workoutId) {
         saveButton.type = 'button';
         saveButton.id = 'saveButtonEdit';
         saveButton.className = 'saveStyle';
-        saveButton.innerHTML = 'Save Workout';
+        saveButton.innerHTML = 'Edit Workout';
         editDiv.appendChild(saveButton);
 
 
@@ -234,14 +255,14 @@ EditWorkoutModule.editWorkout = function (workoutId) {
             var weekDays = [];
 
             var selectedDates = document.querySelectorAll('.exerciseScheduleEdit input[type="checkbox"]');
-           
-            selectedDates.forEach(function(checkbox) {
-                if(checkbox.checked) {
+
+            selectedDates.forEach(function (checkbox) {
+                if (checkbox.checked) {
                     console.log('selectedWeekDay: ', checkbox.value);
                     weekDays.push(checkbox.value);
                 }
             });
-        
+
 
             workoutsEdit.weekDays = weekDays;
 
@@ -249,7 +270,7 @@ EditWorkoutModule.editWorkout = function (workoutId) {
 
             console.log('existing workout index', existingWorkoutIndex);
 
-            if(existingWorkoutIndex !== -1) {
+            if (existingWorkoutIndex !== -1) {
                 workouts[existingWorkoutIndex] = workoutsEdit;
             }
 
@@ -260,7 +281,7 @@ EditWorkoutModule.editWorkout = function (workoutId) {
             const editDiv = document.querySelector('.editDiv');
             editDiv.style.display = 'none';
 
-            
+
 
             var blurredBackground = document.querySelector('.blurredBackground');
             blurredBackground.style.display = "none";
@@ -270,9 +291,9 @@ EditWorkoutModule.editWorkout = function (workoutId) {
             setTimeout(() => {
                 scheduleSelect.style.display = 'none';
             }, 300); // Matches the duration of the CSS transition
-            
+
             handleWorkoutsData();
-           
+
         });
     }
 
@@ -313,9 +334,9 @@ EditWorkoutModule.editWorkout = function (workoutId) {
         schedule.style.display = 'none';
     });
 
-    
 
-    
+
+
 
 
 }
