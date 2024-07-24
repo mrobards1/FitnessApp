@@ -114,12 +114,12 @@ EditWorkoutModule.editWorkout = function (workoutId) {
 
 
         // Clears all checkboxes before setting new ones
-        const allCheckboxes = document.querySelectorAll('.exerciseScheduleEdit input[type="checkbox"]');
-        allCheckboxes.forEach(checkbox => {
-            checkbox.checked = false;
-            checkbox.previousElementSibling.classList.remove('fa-solid');
-            checkbox.previousElementSibling.classList.add('fa-regular');
-        });
+        // const allCheckboxes = document.querySelectorAll('.exerciseScheduleEdit input[type="checkbox"]');
+        // allCheckboxes.forEach(checkbox => {
+        //     checkbox.checked = false;
+        //     checkbox.previousElementSibling.classList.remove('fa-solid');
+        //     checkbox.previousElementSibling.classList.add('fa-regular');
+        // });
 
 
 
@@ -295,37 +295,25 @@ EditWorkoutModule.editWorkout = function (workoutId) {
             handleWorkoutsData();
 
         });
-    }
 
-
-
-
-    workout.weekDays.forEach(day => {
-        const checkbox = document.querySelector(`.exerciseScheduleEdit input[type="checkbox"][value="${day}"]`);
-        if (checkbox) {
-            checkbox.checked = true;
-            checkbox.previousElementSibling.classList.remove('fa-regular');
-            checkbox.previousElementSibling.classList.add('fa-solid');
-        }
-        updateSelectedOptions();
-
-    });
-
-    function updateSelectedOptions() {
-        var selectedOptionsDiv = document.getElementById('selectedOptionsEdit');
-        var checkboxes = document.querySelectorAll('.exerciseScheduleEdit input[type="checkbox"]');
-        var selectedOption = '';
-
-        checkboxes.forEach(function (checkbox) {
-            if (checkbox.checked) {
-                var parentText = checkbox.parentElement.textContent.trim();
-                var dayAbbr = parentText.substring(0, 3);
-                selectedOption += dayAbbr + " ";
+        workout.weekDays.forEach(day => {
+            const checkbox = document.querySelector(`.exerciseScheduleEdit input[type="checkbox"][value="${day}"]`);
+            if (checkbox) {
+                checkbox.checked = true;
+                checkbox.previousElementSibling.classList.remove('fa-regular');
+                checkbox.previousElementSibling.classList.add('fa-solid');
             }
+            updateSelectedOptions();
+    
         });
-
-        selectedOptionsDiv.textContent = selectedOption;
+    
+        
     }
+
+
+
+
+   
 
 
     document.querySelector('.closeSchedule2').addEventListener('click', function () {
@@ -340,4 +328,36 @@ EditWorkoutModule.editWorkout = function (workoutId) {
 
 
 }
+
+function toggleCheckbox(checkbox) {
+    var checkboxIcon = checkbox.previousElementSibling;
+    if (checkbox.checked) {
+        checkboxIcon.classList.remove('fa-regular', 'fa-square');
+        checkboxIcon.classList.add('fa-solid', 'fa-square');
+    } else {
+        checkboxIcon.classList.remove('fa-solid', 'fa-square');
+        checkboxIcon.classList.add('fa-regular', 'fa-square');
+    }
+
+    updateSelectedOptions();
+}
+
+function updateSelectedOptions() {
+    console.log('updateselectedoptions called');
+    var selectedOptionsDiv = document.getElementById('selectedOptionsEdit');
+    var checkboxes = document.querySelectorAll('.exerciseScheduleEdit input[type="checkbox"]');
+    var selectedOption = '';
+
+    checkboxes.forEach(function (checkbox) {
+        if (checkbox.checked) {
+            var parentText = checkbox.parentElement.textContent.trim();
+            var dayAbbr = parentText.substring(0, 3);
+            selectedOption += dayAbbr + " ";
+        }
+    });
+
+    selectedOptionsDiv.textContent = selectedOption;
+}
+
+
 

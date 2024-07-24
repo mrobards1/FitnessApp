@@ -467,7 +467,7 @@ input[type=number]::-webkit-outer-spin-button {
 
 }
 
-.addSet, .addExerciseStyle, .closeSchedule, #showSchedule, #showScheduleEdit, .saveStyle, .deleteExercise{
+.addSet, .addExerciseStyle, .closeSchedule, .closeSchedule2, #showSchedule, #showScheduleEdit, .saveStyle, .deleteExercise{
     padding: 4px;
     border: none;
     font-size: 12px;
@@ -505,12 +505,12 @@ input[type=number]::-webkit-outer-spin-button {
 }
 
 
-.addExerciseStyle, .closeSchedule, #showSchedule, #showScheduleEdit .saveStyle{
+.addExerciseStyle, .closeSchedule, .closeSchedule2, #showSchedule, #showScheduleEdit .saveStyle{
     background-color: var(--reddish);
     color: var(--offwhite);
 }
 
-.closeSchedule {
+.closeSchedule, .closeSchedule2 {
     position: absolute;
     left: 50%;
     transform: translateX(-50%);

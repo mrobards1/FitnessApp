@@ -247,14 +247,6 @@ document.querySelectorAll('.closeSchedule').forEach(function (button) {
 
 
 
-
-document.querySelector('.exerciseSchedule').addEventListener('click', function (event) {
-    var option = event.target;
-    if (option.tagName === 'OPTION') {
-        option.selected = !option.selected;
-    }
-});
-
 function toggleCheckbox(checkbox) {
     var checkboxIcon = checkbox.previousElementSibling;
     if (checkbox.checked) {
