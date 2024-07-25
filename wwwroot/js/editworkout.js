@@ -24,6 +24,7 @@ EditWorkoutModule.editWorkout = function (workoutId) {
         workoutNameInput.className = workoutName;
         workoutNameInput.type = 'text';
         workoutNameInput.value = workout.name;
+
         workoutName.appendChild(workoutNameInput);
         exercisesContainerEdit.appendChild(workoutName);
 
@@ -208,7 +209,16 @@ EditWorkoutModule.editWorkout = function (workoutId) {
 
         saveButton.addEventListener('click', function (event) {
             event.preventDefault(); // Prevents the default form submission behavior
-            console.log('Save button clicked');
+
+            let hasErrors = false;
+
+            var workoutNameInput = document.querySelector('.editWorkout .workoutName input');
+
+            // Check if workoutNameInput is empty
+            if (!workoutNameInput.value.trim()) {
+                alert('Please enter a name for the workout.');
+                hasErrors = true;
+            }
 
             var workoutsEdit = {};
             workoutsEdit.id = workoutId;
@@ -216,10 +226,17 @@ EditWorkoutModule.editWorkout = function (workoutId) {
 
             workoutsEdit.exercises = [];
             document.querySelectorAll('.exerciseGroup').forEach(exerciseGroup => {
+
                 var exercise = {};
 
 
                 exercise.name = exerciseGroup.querySelector('.exercise').value;
+
+                // Check if an exerciseName is empty
+                if(!exercise.name.trim()) {
+                    alert('Please enter a name for all exercises');
+                    hasErrors = true;
+                }
 
                 exercise.sets = [];
                 exerciseGroup.querySelectorAll('.setContainer').forEach(setContainer => {
@@ -251,6 +268,10 @@ EditWorkoutModule.editWorkout = function (workoutId) {
 
 
             });
+            // prevents submission if workout or exericise name is empty
+            if(hasErrors) {
+                return;
+            }
 
             var weekDays = [];
 
@@ -304,16 +325,16 @@ EditWorkoutModule.editWorkout = function (workoutId) {
                 checkbox.previousElementSibling.classList.add('fa-solid');
             }
             updateSelectedOptions();
-    
+
         });
-    
-        
+
+
     }
 
 
 
 
-   
+
 
 
     document.querySelector('.closeSchedule2').addEventListener('click', function () {
