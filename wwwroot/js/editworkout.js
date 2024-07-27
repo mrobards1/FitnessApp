@@ -1,5 +1,7 @@
 var EditWorkoutModule = EditWorkoutModule || {};
 
+
+
 EditWorkoutModule.editWorkout = function (workoutId) {
     var workoutsData = localStorage.getItem('workoutsData');
     var workouts = JSON.parse(workoutsData);
@@ -31,6 +33,8 @@ EditWorkoutModule.editWorkout = function (workoutId) {
         editDiv.appendChild(exercisesContainerEdit);
 
         workout.exercises.forEach(exercise => {
+            const exercises= document.createElement('div');
+            exercises.className = "exercise";
             const exerciseGroup = document.createElement('div');
             exerciseGroup.className = "exerciseGroup";
 
@@ -41,6 +45,7 @@ EditWorkoutModule.editWorkout = function (workoutId) {
             const exerciseInput = document.createElement('input');
             exerciseInput.className = "exercise"
             exerciseInput.value = exercise.name;
+            exerciseInput.placeholder = "Exercise Name";
             exerciseName.appendChild(exerciseInput);
 
             exerciseGroup.appendChild(exerciseName);
@@ -105,8 +110,8 @@ EditWorkoutModule.editWorkout = function (workoutId) {
 
             }
 
-
-            editDiv.appendChild(exerciseGroup);
+            exercises.appendChild(exerciseGroup);
+            editDiv.appendChild(exercises);
 
         });
 
@@ -186,18 +191,28 @@ EditWorkoutModule.editWorkout = function (workoutId) {
 
 
         scheduleButton.addEventListener('click', function () {
-            var scheduleSelect2 = document.querySelector('.exerciseScheduleEdit');
-            console.log(scheduleSelect2);
-            if (scheduleSelect2) {
-                if (scheduleSelect2.style.display === "none") {
-                    scheduleSelect2.style.display = "block";
+            var scheduleSelectEdit = document.querySelector('.exerciseScheduleEdit');
+            var blurredBackground = document.querySelector('.blurredBackgroundEdit');
 
-
-                } else {
-                    scheduleSelect2.style.display = "none";
-                }
+            if (scheduleSelectEdit.classList.contains('show')) {
+                // scheduleSelectEdit.classList.remove('show');
+                
+                // blurredBackground.style.display = "none";
+                // scheduleSelectEdit.style.display = 'none';
+                
+            } else {
+                scheduleSelectEdit.style.display = 'block';
+                blurredBackground.style.display = "block";
+                setTimeout(() => {
+                    scheduleSelectEdit.classList.add('show');
+                    console.log('Has show class after toggle:', scheduleSelectEdit.classList.contains('show'));
+                   
+                }, 10);
             }
         });
+
+
+      
 
         saveButton = document.createElement('button');
         saveButton.type = 'button';
@@ -304,9 +319,6 @@ EditWorkoutModule.editWorkout = function (workoutId) {
 
 
 
-            var blurredBackground = document.querySelector('.blurredBackground');
-            blurredBackground.style.display = "none";
-            console.log('blurredBackground: ', blurredBackground);
             var scheduleSelect = document.querySelector('.exerciseSchedule');
             scheduleSelect.classList.remove('show');
             setTimeout(() => {

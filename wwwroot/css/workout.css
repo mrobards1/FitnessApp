@@ -196,7 +196,7 @@
     
 }
 
-.container .exerciseSchedule {
+.container .exerciseSchedule, .exerciseScheduleEdit {
     display: none;
     opacity: 0;
     transition: opacity 0.8s ease;
@@ -207,9 +207,15 @@
     opacity: 1;
 }
 
+.exerciseScheduleEdit.show {
+    display: block;
+    opacity: 1;
+}
+
 .exerciseScheduleEdit {
     z-index: 500;
 }
+
 
 
 .scheduleTitle {
