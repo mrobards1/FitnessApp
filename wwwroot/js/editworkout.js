@@ -189,27 +189,31 @@ EditWorkoutModule.editWorkout = function (workoutId) {
         scheduleEdit.appendChild(selectedOptionsEdit);
         editDiv.appendChild(scheduleEdit);
 
-
-        scheduleButton.addEventListener('click', function () {
-            var scheduleSelectEdit = document.querySelector('.exerciseScheduleEdit');
-            var blurredBackground = document.querySelector('.blurredBackgroundEdit');
-
-            if (scheduleSelectEdit.classList.contains('show')) {
-                // scheduleSelectEdit.classList.remove('show');
-                
-                // blurredBackground.style.display = "none";
-                // scheduleSelectEdit.style.display = 'none';
-                
+        const blurredBackground = document.createElement('div');
+        blurredBackground.className = 'blurredBackground';
+        blurredBackground.style.display = 'none';
+        editDiv.appendChild(blurredBackground);
+       
+        document.getElementById('showScheduleEdit').addEventListener('click', function () {
+            var container = document.querySelector('.editDiv');
+            var scheduleSelect = document.querySelector('.exerciseScheduleEdit');
+            var blurredBackground = container.querySelector('.blurredBackground');
+            console.log('blurredBackground: ', blurredBackground)
+            if (scheduleSelect.classList.contains('show')) {
+                scheduleSelect.classList.remove('show');
+                blurredBackground.style.display = "none";
+                scheduleSelect.style.display = 'none';
             } else {
-                scheduleSelectEdit.style.display = 'block';
+                scheduleSelect.style.display = 'block';
                 blurredBackground.style.display = "block";
                 setTimeout(() => {
-                    scheduleSelectEdit.classList.add('show');
-                    console.log('Has show class after toggle:', scheduleSelectEdit.classList.contains('show'));
+                    scheduleSelect.classList.add('show');
                    
-                }, 10);
+                }, 10); // Small delay to allow the display property to take effect
             }
         });
+        
+        
 
 
       
@@ -221,6 +225,7 @@ EditWorkoutModule.editWorkout = function (workoutId) {
         saveButton.innerHTML = 'Edit Workout';
         editDiv.appendChild(saveButton);
 
+        
 
         saveButton.addEventListener('click', function (event) {
             event.preventDefault(); // Prevents the default form submission behavior
@@ -351,8 +356,16 @@ EditWorkoutModule.editWorkout = function (workoutId) {
 
     document.querySelector('.closeSchedule2').addEventListener('click', function () {
         schedule = document.querySelector('.exerciseScheduleEdit');
-
         schedule.style.display = 'none';
+        var container = document.querySelector('.editDiv');
+        var blurredBackground = container.querySelector('.blurredBackground');
+        blurredBackground.style.display = "none";
+
+        var scheduleSelect = document.querySelector('.exerciseScheduleEdit');
+        scheduleSelect.classList.remove('show');
+        setTimeout(() => {
+            scheduleSelect.style.display = 'none';
+        }, 300); // Matches the duration of the CSS transition
     });
 
 

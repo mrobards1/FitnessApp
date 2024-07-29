@@ -219,7 +219,7 @@ document.getElementById('showSchedule').addEventListener('click', function () {
     var blurredBackground = document.querySelector('.blurredBackground');
     if (scheduleSelect.classList.contains('show')) {
         scheduleSelect.classList.remove('show');
-        blurredBackground.style.display = "none";
+        blurredBackground.style.setProperty('display', 'none', 'important');
         scheduleSelect.style.display = 'none';
     } else {
         scheduleSelect.style.display = 'block';
