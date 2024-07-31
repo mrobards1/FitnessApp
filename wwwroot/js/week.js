@@ -17,7 +17,8 @@ window.addEventListener('DOMContentLoaded', function () {
 
         // Loop through each day of the week
         workout.weekDays.forEach(day => {
-            const dayName = dayNames[parseInt(day) - 1]; // Convert numerical day to day name
+            const dayIndex = parseInt(day); // Convert numerical day to zero-based index
+            const dayName = dayNames[dayIndex];
             console.log("dayname:", dayName);
             const dayDiv = document.querySelector(`.weekday.${dayName}`);
             if (dayDiv) {
@@ -139,4 +140,32 @@ window.addEventListener('DOMContentLoaded', function () {
             }
         });
     }
+
+    const today = new Date();
+    console.log('today:', today);
+    const date = today.getDay();
+    const weekDays = document.querySelectorAll('.date');
+    console.log('weekdays: ', weekDays);
+
+    const startOfWeek = new Date(today);
+    startOfWeek.setDate(today.getDate() - date);
+
+    const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
+        "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+
+    function formatDate(date) {
+        const month = monthNames[date.getMonth() + 1];
+        const day = date.getDate();
+        return `${month} ${day}`;
+    }
+
+    console.log("Week days:", weekDays);
+
+    weekDays.forEach((p, index) => {
+        const currentDay = new Date(startOfWeek);
+        currentDay.setDate(startOfWeek.getDate() + index);
+        p.textContent = formatDate(currentDay);
+    });
 });
+
+

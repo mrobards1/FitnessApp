@@ -3,7 +3,7 @@
     --reddish: #e26972;
     --darkgrey: #343a40;
     --lightergrey: #6c757d;
-    --lightgrey: #ced4da;
+    --lightgrey: #d6dce2;
 }
 
 
@@ -15,38 +15,42 @@
 }
 
 .container {
-    min-width: 100%;
-    min-height: 100vh;
+    height: 100vh;
+    width: 100%;
     background-color: var(--offwhite);
-    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.weekContainer {
     display: grid;
-    grid-template-columns: repeat(7, 1fr);
-    grid-gap: 10px;
-    overflow-x: auto; 
-    overflow-y: hidden;
+    grid-template-rows: repeat(7, 1fr);
+    gap: 8px;
 }
 
 
 .weekday {
-    width: 300px;
-    height: 500px;
+    width: 900px;
+    height: 90px;
     /* background-color: var(--darkgrey); */
     border: 1px solid var(--reddish);
     display: flex;
-    flex-direction: column;
-    margin-top: 40px;
+    flex-direction: row;
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.4);
-    border-radius: 5px;
-    overflow: scroll;
-    
+    border-radius: 2px;
+    align-items: center;
+
 }
 
 .weekday:first-child {
-    margin-left: 150px;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
 }
 
 .weekday:last-child {
-    margin-right: 50px;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
 }
 
 .weekday::-webkit-scrollbar {
@@ -54,30 +58,31 @@
 }
 
 .workoutDiv {
-    width: 90%;
-    min-height: 100px;
+    width: 200px;
+    height: 70px;
     background-color: var(--lightgrey);
-    margin: 0px auto;
-    margin-bottom: 10px;
     border-radius: 5px;
     color: var(--darkgrey);
     box-shadow: 0px 3px 4px rgba(0, 0, 0, 0.3);
+    display: flex;
+    flex-direction: column;
+    border: 1px solid var(--reddish);
     
 }
 
 .titleArea {
-    background-color: var(--reddish);
-    height: 60px;
-    width: 100%;
+    /* background-color: var(--reddish); */
+    height: 100%;
+    width: 100px;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
-    margin-bottom: 30px;
     color: var(--offwhite);
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
-    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
     
+    border-right: 1px solid var(--reddish);
+    color: var(--reddish);
+    margin-right: 30px;
 }
 
 .weekTitle {
@@ -91,9 +96,18 @@
     min-height: 50px;
 } */
 
+.workoutTitle {
+    font-size: 25px;
+}
+
+.exerciseCount {
+    font-size: 15px;
+}
+
 .workoutTitle, .exerciseCount {
     margin-top: 5px;
     margin-left: 10px;
+    color: var(--lightergrey)
 }
 
 .exerciseCount {
@@ -101,19 +115,17 @@
 }
 
 .expandButton {
-    padding: 2px;
+    padding: 1px;
     display: block;
     border: none;
     margin: 0 auto;
-    margin-top: 10px;
     width: 40%;
     box-shadow: 0px 1px 0.5px rgba(0, 0, 0, 0.5);
-    font-size: 15px;
+    font-size: 10px;
     border-radius: 3px;
     background-color: var(--reddish);
     color: var(--offwhite);
     font-weight: bold;
-    margin-bottom: 20px;
 }
 
 /* .linebreak {
@@ -135,7 +147,7 @@
 
 .exerciseName {
     font-weight: bold;
-    font-size: 18px;
+    font-size: 15px;
     margin-bottom: 10px;
 }
 
