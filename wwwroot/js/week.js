@@ -4,22 +4,24 @@ window.addEventListener('DOMContentLoaded', function () {
     var workoutsData = localStorage.getItem('workoutsData');
     var workouts = JSON.parse(workoutsData);
 
-    console.log("All Workouts in week.js:", workouts);
+
+    console.log('All Workouts in week.js:', workouts);
 
     workouts.forEach(function (workout) {
         populateWeek(workout);
     });
 
     function populateWeek(workout) {
-        const dayNames = ["sun", "mon", "tues", "wed", "thurs", "fri", "sat"];
+        const dayNames = ['sun', 'mon', 'tues', 'wed', 'thurs', 'fri', 'sat'];
 
-        console.log("Workout name:", workout.name);
+        console.log('Workout name:', workout.name);
+        
 
         // Loop through each day of the week
         workout.weekDays.forEach(day => {
             const dayIndex = parseInt(day); // Convert numerical day to zero-based index
             const dayName = dayNames[dayIndex];
-            console.log("dayname:", dayName);
+            console.log('dayname:', dayName);
             const dayDiv = document.querySelector(`.weekday.${dayName}`);
             if (dayDiv) {
                 const workoutDiv = document.createElement('div');
@@ -39,14 +41,21 @@ window.addEventListener('DOMContentLoaded', function () {
                 const moreInfo = document.createElement('div');
                 moreInfo.className = 'moreInfo';
                 moreInfo.style.display = 'none';
+                
+                const exerciseContainer = document.createElement('div');
+                exerciseContainer.className = 'exerciseContainer';
+                exerciseContainer.style.display = 'none';
+                const expandedWorkoutTitle = document.createElement('h1');
+                expandedWorkoutTitle.textContent = workout.name;
+                exerciseContainer.appendChild(expandedWorkoutTitle);
 
                 workout.exercises.forEach(exercise => {
-
+                    
                     const exerciseDiv = document.createElement('div');
-                    exerciseDiv.className = "exerciseDiv";
+                    exerciseDiv.className = 'exerciseDiv';
 
                     const exerciseName = document.createElement('p');
-                    exerciseName.className = "exerciseName"
+                    exerciseName.className = 'exerciseName'
                     exerciseName.textContent = exercise.name;
                     exerciseDiv.appendChild(exerciseName);
 
@@ -54,10 +63,10 @@ window.addEventListener('DOMContentLoaded', function () {
                     var setCount = 1;
                     exercise.sets.forEach(set => {
                         const setContainer = document.createElement('div');
-                        setContainer.className = "setContainer";
+                        setContainer.className = 'setContainer';
 
                         const setNum = document.createElement('div');
-                        setNum.className = "setName";
+                        setNum.className = 'setName';
 
                         const setString = document.createElement('p');
                         setString.textContent = `Set: ${setCount} `;
@@ -66,11 +75,11 @@ window.addEventListener('DOMContentLoaded', function () {
                         setContainer.appendChild(setNum);
 
                         const setVals = document.createElement('div');
-                        setVals.className = "setVals";
+                        setVals.className = 'setVals';
 
                         const setValString = document.createElement('p');
 
-                        let valString = "";
+                        let valString = '';
 
                         //checks if weight, reps, and time values are defined
                         if (set.weight !== undefined) {
@@ -98,12 +107,19 @@ window.addEventListener('DOMContentLoaded', function () {
 
                     if (exercise.rest !== undefined) {
                         const rest = document.createElement('p');
-                        rest.textContent = "Rest Between Sets: " + exercise.rest;
+                        rest.textContent = 'Rest Between Sets: ' + exercise.rest;
                         exerciseDiv.appendChild(rest);
                     }
 
-                    moreInfo.appendChild(exerciseDiv);
+                    exerciseContainer.appendChild(exerciseDiv);
+                    
                 });
+                const minimizeButton = document.createElement('button');
+                minimizeButton.className = 'expandButton';
+                minimizeButton.textContent = 'View Workout';
+                exerciseContainer.appendChild(minimizeButton);
+                moreInfo.appendChild(exerciseContainer);
+                
 
 
 
@@ -115,28 +131,27 @@ window.addEventListener('DOMContentLoaded', function () {
                 expandButton.textContent = 'View Workout';
                 workoutDiv.appendChild(expandButton);
 
-                expandButton.addEventListener('click', function () {
-                    if (moreInfo.style.display === "none") {
-                        moreInfo.style.display = "block";
-                        exerciseCount.style.display = "none";
-                        expandButton.textContent = "Minimize View";
-                        const moreInfoHeight = moreInfo.scrollHeight;
-                        const newHeight = moreInfoHeight + 100;
-
-                        // Set the minHeight of workoutDiv
-                        workoutDiv.style.minHeight = `${newHeight}px`;
-
+                function toggleWorkoutView() {
+                    const blurredBackground = document.querySelector('.blurredBackground');
+                    if (exerciseContainer.style.display === 'none') {
+                        moreInfo.style.display = 'block';
+                        exerciseCount.style.display = 'none';
+                        expandButton.textContent = 'Minimize View';
+                        minimizeButton.textContent = 'Minimize View';
+                        exerciseContainer.style.display = 'block';
+                        blurredBackground.style.display = 'block';
                     } else {
-                        moreInfo.style.display = "none";
-                        exerciseCount.style.display = "block";
-                        expandButton.textContent = "View Workout";
-                        workoutDiv.style.minHeight = "";
-
+                        moreInfo.style.display = 'none';
+                        exerciseCount.style.display = 'block';
+                        expandButton.textContent = 'View Workout';
+                        minimizeButton.textContent = 'Minimize Workout';
+                        exerciseContainer.style.display = 'none';
+                        blurredBackground.style.display = 'none';
                     }
+                };
 
-
-
-                });
+                expandButton.addEventListener('click', toggleWorkoutView);
+                minimizeButton.addEventListener('click', toggleWorkoutView);
             }
         });
     }
@@ -150,8 +165,8 @@ window.addEventListener('DOMContentLoaded', function () {
     const startOfWeek = new Date(today);
     startOfWeek.setDate(today.getDate() - date);
 
-    const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
-        "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+    const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
+        'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 
     function formatDate(date) {
         const month = monthNames[date.getMonth() + 1];
@@ -159,7 +174,7 @@ window.addEventListener('DOMContentLoaded', function () {
         return `${month} ${day}`;
     }
 
-    console.log("Week days:", weekDays);
+    console.log('Week days:', weekDays);
 
     weekDays.forEach((p, index) => {
         const currentDay = new Date(startOfWeek);
