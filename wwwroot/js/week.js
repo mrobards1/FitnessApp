@@ -44,7 +44,7 @@ window.addEventListener('DOMContentLoaded', function () {
                 
                 const exerciseContainer = document.createElement('div');
                 exerciseContainer.className = 'exerciseContainer';
-                exerciseContainer.style.display = 'none';
+                exerciseContainer.style.display = 'block';
                 const expandedWorkoutTitle = document.createElement('h1');
                 expandedWorkoutTitle.textContent = workout.name;
                 exerciseContainer.appendChild(expandedWorkoutTitle);
@@ -131,24 +131,30 @@ window.addEventListener('DOMContentLoaded', function () {
                 expandButton.textContent = 'View Workout';
                 workoutDiv.appendChild(expandButton);
 
+                
+
+               
+                
+
                 function toggleWorkoutView() {
                     const blurredBackground = document.querySelector('.blurredBackground');
-                    if (exerciseContainer.style.display === 'none') {
+                    if (!exerciseContainer.classList.contains('opened')) {
                         moreInfo.style.display = 'block';
-                        exerciseCount.style.display = 'none';
                         expandButton.textContent = 'Minimize View';
                         minimizeButton.textContent = 'Minimize View';
-                        exerciseContainer.style.display = 'block';
+                        exerciseContainer.classList.add('opened');
+                        exerciseContainer.classList.remove('closed');
                         blurredBackground.style.display = 'block';
                     } else {
                         moreInfo.style.display = 'none';
-                        exerciseCount.style.display = 'block';
                         expandButton.textContent = 'View Workout';
-                        minimizeButton.textContent = 'Minimize Workout';
-                        exerciseContainer.style.display = 'none';
+                        minimizeButton.textContent = 'View Workout';
+                        exerciseContainer.classList.remove('opened');
+                        exerciseContainer.classList.add('closed');
                         blurredBackground.style.display = 'none';
                     }
                 };
+
 
                 expandButton.addEventListener('click', toggleWorkoutView);
                 minimizeButton.addEventListener('click', toggleWorkoutView);
@@ -182,5 +188,6 @@ window.addEventListener('DOMContentLoaded', function () {
         p.textContent = formatDate(currentDay);
     });
 });
+
 
 
