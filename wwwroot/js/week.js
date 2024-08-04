@@ -47,6 +47,7 @@ window.addEventListener('DOMContentLoaded', function () {
                 exerciseContainer.style.display = 'block';
                 const expandedWorkoutTitle = document.createElement('h1');
                 expandedWorkoutTitle.textContent = workout.name;
+                expandedWorkoutTitle.className = 'expandedWorkoutTitle';
                 exerciseContainer.appendChild(expandedWorkoutTitle);
 
                 workout.exercises.forEach(exercise => {
@@ -115,8 +116,8 @@ window.addEventListener('DOMContentLoaded', function () {
                     
                 });
                 const minimizeButton = document.createElement('button');
-                minimizeButton.className = 'expandButton';
-                minimizeButton.textContent = 'View Workout';
+                minimizeButton.className = 'minimizeButton';
+                minimizeButton.innerHTML = '<i class="fa-solid fa-xmark"></i>';
                 exerciseContainer.appendChild(minimizeButton);
                 moreInfo.appendChild(exerciseContainer);
                 
@@ -139,16 +140,12 @@ window.addEventListener('DOMContentLoaded', function () {
                 function toggleWorkoutView() {
                     const blurredBackground = document.querySelector('.blurredBackground');
                     if (!exerciseContainer.classList.contains('opened')) {
-                        moreInfo.style.display = 'block';
-                        expandButton.textContent = 'Minimize View';
-                        minimizeButton.textContent = 'Minimize View';
+                        moreInfo.style.display = 'block';   
                         exerciseContainer.classList.add('opened');
                         exerciseContainer.classList.remove('closed');
                         blurredBackground.style.display = 'block';
                     } else {
                         moreInfo.style.display = 'none';
-                        expandButton.textContent = 'View Workout';
-                        minimizeButton.textContent = 'View Workout';
                         exerciseContainer.classList.remove('opened');
                         exerciseContainer.classList.add('closed');
                         blurredBackground.style.display = 'none';

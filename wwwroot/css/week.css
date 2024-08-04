@@ -128,6 +128,21 @@
     font-weight: bold;
 }
 
+.minimizeButton {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    top: 10px;
+    right: 10px;
+    padding: 3px;
+    background-color: var(--offwhite);
+    border: none;
+    font-size: 25px;
+    border-radius: 4px;
+    color: var(--lightergrey)
+}
+
 /* .linebreak {
     width: 100%;
     height: 2px;
@@ -140,7 +155,7 @@
     width: 400px;
     height: 100vh;
     background-color: var(--offwhite);
-    border: 1px solid var(--reddish);
+    border-left: 1px solid var(--reddish);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -150,14 +165,25 @@
     z-index: 1000;
     overflow-y: scroll;
     transition: right 1s ease;
+    box-shadow: -1px 0px 4px rgba(0, 0, 0, 0.4);
+    overflow: scroll;
 }
 
 .exerciseContainer.opened {
     right: 0;
+    display: flex;
 }
 
 .exerciseContainer.closed {
     right: -400px;
+}
+
+.expandedWorkoutTitle {
+   margin-top: 20px;
+   margin-bottom: 20px; 
+   color: var(--reddish);
+   display: flex;
+   justify-content: center;
 }
 
 .blurredBackground {

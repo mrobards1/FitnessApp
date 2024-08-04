@@ -31,7 +31,8 @@ document.getElementById('createWorkout').addEventListener('click', function () {
 
 document.getElementById('workoutForm').addEventListener('submit', function (event) {
     event.preventDefault();
-
+    
+    var hasErrors = false;
 
     // Retrieve existing workouts data from local storage
     var existingWorkoutsData = localStorage.getItem('workoutsData');
@@ -87,9 +88,17 @@ document.getElementById('workoutForm').addEventListener('submit', function (even
 
             if (sets.length > 0) {
                 workout.exercises.push(exercise);
+                hasErrors = false;
+            } else {
+                alert('You have to have at least 1 set per exercise');
+                hasErrors = true;
             }
         }
     });
+
+    if (hasErrors) {
+        return; // Prevent form submission if there are errors
+    }
 
     var weekDays = [];
     var selectedDates = document.querySelectorAll('.exerciseSchedule input[type="checkbox"]');
